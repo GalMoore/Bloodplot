@@ -88,3 +88,13 @@ if prompt := st.chat_input("What is up?"):
         message_placeholder.markdown(full_response)
     # Append the assistant's full response to the session's messages with the role "assistant"
     st.session_state.messages.append({"role": "assistant", "content": full_response})
+
+
+example_document = df["Text"][0]
+# Split the document into lines
+lines = example_document.split('\n')
+
+# Print each line
+for line in lines:
+    print(line)
+    st.write(line)

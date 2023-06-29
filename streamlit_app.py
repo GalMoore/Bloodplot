@@ -43,7 +43,7 @@ st.write(df)  # display the dataframe on the screen
 
 
 # Set the OpenAI API key from Streamlit secrets
-openai.api_key = st.secrets["OPENAI_API_KEY"]
+openai.api_key = st.secrets["openai_password"]
 
 # Initialize the session state for the OpenAI model if it doesn't exist, with a default value of "gpt-4"
 if "openai_model" not in st.session_state:

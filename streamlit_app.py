@@ -120,3 +120,6 @@ example_dict_outcome = {
     "glucose": 147,
     "lactate": 13,
 }
+
+# Initialize a new column 'Messages' with dtype object
+df['Messages'] = pd.Series(dtype=object)

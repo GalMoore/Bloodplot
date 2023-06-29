@@ -10,27 +10,27 @@ st.title("Sheba Documents Analyzer")
 # Add a file uploader to the sidebar for the user to upload up to 10 documents
 uploaded_files = st.sidebar.file_uploader("Upload up to 10 documents", accept_multiple_files=True, type=['pdf'])
 
-# # Initialize an empty list to store the extracted text from the uploaded files
-# data = []
-# filenames = []
+# Initialize an empty list to store the extracted text from the uploaded files
+data = []
+filenames = []
 
-# # Loop over each uploaded file
-# if uploaded_files:
-#     st.sidebar.write("You have uploaded the following files:")
-#     for file in uploaded_files:
-#         st.sidebar.write(file.name)
-#         # Open the file as a stream
-#         file_stream = BytesIO(file.read())
-#         # Create a PDF file reader object
-#         pdf_reader = PyPDF2.PdfFileReader(file_stream)
-#         text = ""
-#         # Loop over each page in the PDF and extract the text
-#         for page in range(pdf_reader.getNumPages()):
-#             text += pdf_reader.getPage(page).extract_text()
-#         # Append the text to the data list
-#         data.append(text)
-#         # Append the filename to the filenames list
-#         filenames.append(file.name)
+# Loop over each uploaded file
+if uploaded_files:
+    st.sidebar.write("You have uploaded the following files:")
+    for file in uploaded_files:
+        st.sidebar.write(file.name)
+        # Open the file as a stream
+        file_stream = BytesIO(file.read())
+        # Create a PDF file reader object
+        pdf_reader = PyPDF2.PdfFileReader(file_stream)
+        text = ""
+        # Loop over each page in the PDF and extract the text
+        for page in range(pdf_reader.getNumPages()):
+            text += pdf_reader.getPage(page).extract_text()
+        # Append the text to the data list
+        data.append(text)
+        # Append the filename to the filenames list
+        filenames.append(file.name)
 
 # # Create a DataFrame
 # df = pd.DataFrame(data, columns=['Text'], index=filenames)

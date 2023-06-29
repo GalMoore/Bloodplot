@@ -211,3 +211,59 @@ def extract_values(message_str):
 df = df.join(df['Messages'].apply(extract_values).apply(pd.Series), rsuffix='_extracted')
 # df = df.join(df['Messages'].apply(extract_values).apply(pd.Series))
 st.write(df)
+
+
+# extract date and add to df
+
+example_date = "14-03-2023 01:12"
+
+# Iterate through the DataFrame
+for index, row in df.iterrows():
+    print("collecting text from document in df and sending query to chatgpt ", index)
+    document_text = row['Text']
+
+    # Ask ChatGPT for dict of results for each document
+    chat_response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": f"You are an israeli nurse in ICU with 20 years experience. When I give you a text string that includes a lab report like this: {example_document}, return a string with the date and time like this: {example_date}"},
+            {"role": "user", \
+             "content": f"{document_text}"}
+        ]
+    )
+
+    # Extract the content field
+    messages = chat_response["choices"][0]["message"]["content"]
+    # Replace single quotes with double quotes
+    messages = messages.replace("'", '"')
+    # Convert string representation of dictionary back to dictionary
+    print("messages ",messages)
+    print("index ", index)
+
+    # try:
+    #     messages_dict = json.loads(messages)
+    # except json.JSONDecodeError as e:
+    #     print(f"Unable to parse message into a dictionary: {e}")
+    #     continue
+
+    # Convert dictionary into a string and update the corresponding column in the DataFrame
+    df.at[index, 'Date'] = json.dumps(messages)
+
+st.write(df)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

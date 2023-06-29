@@ -1,18 +1,18 @@
 import openai
 import streamlit as st
-# import PyPDF2
+import PyPDF2
 # import pandas as pd
 # from io import BytesIO
 
 try:
     # Attempt to import langchain
-    import PyPDF2
-    print("PyPDF2 is installed.")
-    st.write("PyPDF2 is installed.")
-    print("Version:", PyPDF2.__version__)
+    import pandas
+    print("pandas is installed.")
+    st.write("pandas is installed.")
+    print("Version:", pandas.__version__)
 except ImportError:
-    print("PyPDF2 is not installed.")
-    st.write("PyPDF2 is NOT installed.")
+    print("pandas is not installed.")
+    st.write("pandas is NOT installed.")
 
 # Set the title of the Streamlit application
 st.title("ChatGPT-like clone")

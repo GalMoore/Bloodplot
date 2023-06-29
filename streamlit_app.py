@@ -1,7 +1,7 @@
 import openai
 import streamlit as st
 import PyPDF2
-# import pandas as pd
+import pandas as pd
 # from io import BytesIO
 
 try:

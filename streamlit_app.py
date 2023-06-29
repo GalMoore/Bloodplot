@@ -5,7 +5,7 @@ import pandas as pd
 from io import BytesIO
 
 # Set the title of the Streamlit application
-st.title("ChatGPT-like clone")
+st.title("Sheba Documents Analyzer")
 
 # Add a file uploader to the sidebar for the user to upload up to 10 documents
 uploaded_files = st.sidebar.file_uploader("Upload up to 10 documents", accept_multiple_files=True, type=['pdf'])

@@ -35,10 +35,10 @@ if uploaded_files:
 # Create a DataFrame
 df = pd.DataFrame(data, columns=['Text'], index=filenames)
 
-# # Convert text to lowercase
-# df['Text'] = df['Text'].str.lower()
+# Convert text to lowercase
+df['Text'] = df['Text'].str.lower()
 
-# st.write(df)  # display the dataframe on the screen
+st.write(df)  # display the dataframe on the screen
 
 
 # # Set the OpenAI API key from Streamlit secrets

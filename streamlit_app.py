@@ -32,8 +32,8 @@ if uploaded_files:
         # Append the filename to the filenames list
         filenames.append(file.name)
 
-# # Create a DataFrame
-# df = pd.DataFrame(data, columns=['Text'], index=filenames)
+# Create a DataFrame
+df = pd.DataFrame(data, columns=['Text'], index=filenames)
 
 # # Convert text to lowercase
 # df['Text'] = df['Text'].str.lower()

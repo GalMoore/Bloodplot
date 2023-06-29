@@ -315,23 +315,23 @@ for index, row in df.iterrows():
 
 st.write(df)
 
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
-# Make sure both glucose and Date_clean columns are not null
-df_filtered = df[df['glucose'].notnull() & df['Date_clean'].notnull()]
+# # Make sure both glucose and Date_clean columns are not null
+# df_filtered = df[df['glucose'].notnull() & df['Date_clean'].notnull()]
 
-# Convert Date_clean to datetime if it's not already
-df_filtered['Date_clean'] = pd.to_datetime(df_filtered['Date_clean'], format='%d-%m-%Y %H:%M')
+# # Convert Date_clean to datetime if it's not already
+# df_filtered['Date_clean'] = pd.to_datetime(df_filtered['Date_clean'], format='%d-%m-%Y %H:%M')
 
-# Plot the data
-fig, ax = plt.subplots()
-ax.plot_date(df_filtered['Date_clean'], df_filtered['glucose'], linestyle='solid')
-ax.set_title('Glucose Over Time')
-ax.set_xlabel('Date')
-ax.set_ylabel('Glucose')
+# # Plot the data
+# fig, ax = plt.subplots()
+# ax.plot_date(df_filtered['Date_clean'], df_filtered['glucose'], linestyle='solid')
+# ax.set_title('Glucose Over Time')
+# ax.set_xlabel('Date')
+# ax.set_ylabel('Glucose')
 
-# Using Streamlit's matplotlib plotting
-st.pyplot(fig)
+# # Using Streamlit's matplotlib plotting
+# st.pyplot(fig)
 
 
 

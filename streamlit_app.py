@@ -98,3 +98,25 @@ lines = example_document.split('\n')
 # for line in lines:
 #     print(line)
 #     st.write(line)
+
+example_dict_outcome = {
+    "ph": 7.458,
+    "pco2": 40.9,
+    "po2": 56.0,
+    "hco3 (bicarbonate)-calc.": 28.3,
+    "base excess": 4.1,
+    "hematocrit": 29,
+    "hemoglobin": 10.0,
+    "saturation, o2": 88.4,
+    "oxyhemoglobin": 88.0,
+    "carboxyhemoglobin": 0.2,
+    "methemoglobin": 0.3,
+    "deoxyhemoglobin": 11.5,
+    "sodium": 140,
+    "potassium": 3.9,
+    "calcium, ionized": 0.39,
+    "chloride": 98,
+    "anion gap": 17.2,
+    "glucose": 147,
+    "lactate": 13,
+}

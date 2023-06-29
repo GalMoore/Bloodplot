@@ -4,21 +4,11 @@ import PyPDF2
 import pandas as pd
 from io import BytesIO
 
-try:
-    # Attempt to import langchain
-    import pandas
-    print("pandas is installed.")
-    st.write("pandas is installed.")
-    print("Version:", pandas.__version__)
-except ImportError:
-    print("pandas is not installed.")
-    st.write("pandas is NOT installed.")
-
 # Set the title of the Streamlit application
 st.title("ChatGPT-like clone")
 
-# # Add a file uploader to the sidebar for the user to upload up to 10 documents
-# uploaded_files = st.sidebar.file_uploader("Upload up to 10 documents", accept_multiple_files=True, type=['pdf'])
+# Add a file uploader to the sidebar for the user to upload up to 10 documents
+uploaded_files = st.sidebar.file_uploader("Upload up to 10 documents", accept_multiple_files=True, type=['pdf'])
 
 # # Initialize an empty list to store the extracted text from the uploaded files
 # data = []

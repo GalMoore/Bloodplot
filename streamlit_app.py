@@ -279,7 +279,29 @@ for index, row in df.iterrows():
     # Convert dictionary into a string and update the corresponding column in the DataFrame
     df.at[index, 'Date'] = json.dumps(messages)
 
+
+from datetime import datetime
+
+# Iterate over the DataFrame
+for index, row in df.iterrows():
+    # Extract the original date from the Date column
+    original_date_str = row['Date']
+    try:
+        # Convert the original date string to a datetime object
+        original_date = datetime.strptime(original_date_str, '%d-%m-%Y %H:%M')
+
+        # Convert the datetime object back to a string, but only with the desired parts
+        clean_date_str = datetime.strftime(original_date, '%d-%m-%Y %H:%M')
+
+        # Add the cleaned date to the Date_clean column
+        df.at[index, 'Date_clean'] = clean_date_str
+    except ValueError:
+        # In case the date string does not match the expected format
+        print(f"Could not parse date string {original_date_str} at index {index}")
+
 st.write(df)
+
+
 
 
 

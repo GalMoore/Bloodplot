@@ -5,6 +5,7 @@ import pandas as pd
 from io import BytesIO
 import json
 import time
+import plotly.express as px
 
 # Set the title of the Streamlit application
 st.title("Sheba Documents Analyzer")
@@ -334,7 +335,16 @@ st.write(df)
 # st.pyplot(fig)
 
 
-
+# Check if the columns 'glucose' and 'Date_clean' exist in the DataFrame
+if 'glucose' in df.columns and 'Date_clean' in df.columns:
+    # Filter the DataFrame to only include rows where 'glucose' and 'Date_clean' are not null
+    df_filtered = df[df['glucose'].notnull() & df['Date_clean'].notnull()]
+    
+    # Continue with your plot
+    fig = px.line(df_filtered, x='Date_clean', y='glucose', title='Glucose levels over time')
+    st.plotly_chart(fig)
+else:
+    st.write("The 'glucose' and/or 'Date_clean' columns could not be found in the DataFrame.")
 
 
 

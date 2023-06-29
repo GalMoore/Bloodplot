@@ -207,6 +207,7 @@ def extract_values(message_str):
         elif key in cols:
             result[key] = value
     return result
-
-df = df.join(df['Messages'].apply(extract_values).apply(pd.Series))
+    
+df = df.join(df['Messages'].apply(extract_values).apply(pd.Series), rsuffix='_extracted')
+# df = df.join(df['Messages'].apply(extract_values).apply(pd.Series))
 st.write(df)

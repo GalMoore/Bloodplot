@@ -43,18 +43,18 @@ st.write(df)  # display the dataframe on the screen
 # Set the OpenAI API key from Streamlit secrets
 openai.api_key = st.secrets["openai_password"]
 
-# # Initialize the session state for the OpenAI model if it doesn't exist, with a default value of "gpt-4"
-# if "openai_model" not in st.session_state:
-#     st.session_state["openai_model"] = "gpt-4"
+# Initialize the session state for the OpenAI model if it doesn't exist, with a default value of "gpt-4"
+if "openai_model" not in st.session_state:
+    st.session_state["openai_model"] = "gpt-4"
 
-# # Initialize the session state for the messages if it doesn't exist, as an empty list
-# if "messages" not in st.session_state:
-#     st.session_state.messages = []
+# Initialize the session state for the messages if it doesn't exist, as an empty list
+if "messages" not in st.session_state:
+    st.session_state.messages = []
 
-# # Display all the existing messages in the chat, with the appropriate role (user or assistant)
-# for message in st.session_state.messages:
-#     with st.chat_message(message["role"]):
-#         st.markdown(message["content"])
+# Display all the existing messages in the chat, with the appropriate role (user or assistant)
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
 
 # # Wait for the user to input a message
 # if prompt := st.chat_input("What is up?"):

@@ -56,6 +56,7 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
+st.write("till here all loaded")
 # # Wait for the user to input a message
 # if prompt := st.chat_input("What is up?"):
 #     # If the user inputs a message, append it to the session's messages with the role "user"

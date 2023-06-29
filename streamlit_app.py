@@ -315,6 +315,28 @@ for index, row in df.iterrows():
 
 st.write(df)
 
+import matplotlib.pyplot as plt
+
+# Make sure both glucose and Date_clean columns are not null
+df_filtered = df[df['glucose'].notnull() & df['Date_clean'].notnull()]
+
+# Convert Date_clean to datetime if it's not already
+df_filtered['Date_clean'] = pd.to_datetime(df_filtered['Date_clean'], format='%d-%m-%Y %H:%M')
+
+# Plot the data
+fig, ax = plt.subplots()
+ax.plot_date(df_filtered['Date_clean'], df_filtered['glucose'], linestyle='solid')
+ax.set_title('Glucose Over Time')
+ax.set_xlabel('Date')
+ax.set_ylabel('Glucose')
+
+# Using Streamlit's matplotlib plotting
+st.pyplot(fig)
+This code creates a time series plot of glucose level over time using the matplotlib library. The plot_date() function is used because the x-axis is a series of dates. The line connecting the points is solid. The title, x-label, and y-label are all set, and then the plot is shown in the Streamlit app using st.pyplot().
+
+
+
+
 
 
 

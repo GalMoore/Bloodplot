@@ -94,7 +94,7 @@ example_document = df["Text"][0]
 # Split the document into lines
 lines = example_document.split('\n')
 
-# Print each line
-for line in lines:
-    print(line)
-    st.write(line)
+# # Print each line
+# for line in lines:
+#     print(line)
+#     st.write(line)

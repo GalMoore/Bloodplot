@@ -6,13 +6,13 @@ import streamlit as st
 
 try:
     # Attempt to import langchain
-    import openai
-    print("openai is installed.")
-    st.write("openai is installed.")
-    print("Version:", openai.__version__)
+    import PyPDF2
+    print("PyPDF2 is installed.")
+    st.write("PyPDF2 is installed.")
+    print("Version:", PyPDF2.__version__)
 except ImportError:
-    print("openai is not installed.")
-    st.write("openai is NOT installed.")
+    print("PyPDF2 is not installed.")
+    st.write("PyPDF2 is NOT installed.")
 
 # Set the title of the Streamlit application
 st.title("ChatGPT-like clone")

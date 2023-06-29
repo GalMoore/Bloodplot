@@ -1,8 +1,8 @@
-import openai
+# import openai
 import streamlit as st
-import PyPDF2
-import pandas as pd
-from io import BytesIO
+# import PyPDF2
+# import pandas as pd
+# from io import BytesIO
 
 
 # Set the title of the Streamlit application

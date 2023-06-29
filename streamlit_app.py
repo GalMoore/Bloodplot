@@ -89,28 +89,19 @@ if prompt := st.chat_input("What is up?"):
     # Append the assistant's full response to the session's messages with the role "assistant"
     st.session_state.messages.append({"role": "assistant", "content": full_response})
 
-
-# example_document = df["Text"][0]
-# # Split the document into lines
-# lines = example_document.split('\n')
-
 # Check if df["Text"][0] exists before calling example_document
 if len(df) > 0 and "Text" in df.columns and len(df["Text"]) > 0:
     example_document = df["Text"][0]
     # Split the document into lines
     lines = example_document.split('\n')
 
-    # Print each line
-    for line in lines:
-        print(line)
-        st.write(line)
+    # # Print each line
+    # for line in lines:
+    #     print(line)
+    #     st.write(line)
 else:
     st.write("No document found.")
 
-# # Print each line
-# for line in lines:
-#     print(line)
-#     st.write(line)
 
 example_dict_outcome = {
     "ph": 7.458,

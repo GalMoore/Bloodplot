@@ -347,19 +347,19 @@ st.write(df)
 #     st.write("The 'glucose' and/or 'Date_clean' columns could not be found in the DataFrame.")
 
 
-# Check if the columns 'glucose' and 'Date_clean' exist in the DataFrame
-if 'glucose' in df.columns and 'Date_clean' in df.columns:
-    # First, sort the DataFrame by 'Date_clean'
-    df_sorted = df.sort_values('Date_clean')
+# # Check if the columns 'glucose' and 'Date_clean' exist in the DataFrame
+# if 'glucose' in df.columns and 'Date_clean' in df.columns:
+#     # First, sort the DataFrame by 'Date_clean'
+#     df_sorted = df.sort_values('Date_clean')
 
-    # Then, filter the DataFrame to only include rows where 'glucose' and 'Date_clean' are not null
-    df_filtered = df_sorted[df_sorted['glucose'].notnull() & df_sorted['Date_clean'].notnull()]
+#     # Then, filter the DataFrame to only include rows where 'glucose' and 'Date_clean' are not null
+#     df_filtered = df_sorted[df_sorted['glucose'].notnull() & df_sorted['Date_clean'].notnull()]
 
-    # Continue with your plot
-    fig = px.line(df_filtered, x='Date_clean', y='glucose', title='Glucose levels over time')
-    st.plotly_chart(fig)
-else:
-    st.write("The 'glucose' and/or 'Date_clean' columns could not be found in the DataFrame.")
+#     # Continue with your plot
+#     fig = px.line(df_filtered, x='Date_clean', y='glucose', title='Glucose levels over time')
+#     st.plotly_chart(fig)
+# else:
+#     st.write("The 'glucose' and/or 'Date_clean' columns could not be found in the DataFrame.")
 
 
 

@@ -90,9 +90,22 @@ if prompt := st.chat_input("What is up?"):
     st.session_state.messages.append({"role": "assistant", "content": full_response})
 
 
-example_document = df["Text"][0]
-# Split the document into lines
-lines = example_document.split('\n')
+# example_document = df["Text"][0]
+# # Split the document into lines
+# lines = example_document.split('\n')
+
+# Check if df["Text"][0] exists before calling example_document
+if len(df) > 0 and "Text" in df.columns and len(df["Text"]) > 0:
+    example_document = df["Text"][0]
+    # Split the document into lines
+    lines = example_document.split('\n')
+
+    # Print each line
+    for line in lines:
+        print(line)
+        st.write(line)
+else:
+    st.write("No document found.")
 
 # # Print each line
 # for line in lines:

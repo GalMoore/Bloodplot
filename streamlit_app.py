@@ -316,7 +316,35 @@ for index, row in df.iterrows():
 
 st.write(df)
 
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
+
+
+# # Check if the columns 'glucose' and 'Date_clean' exist in the DataFrame
+# if 'glucose' in df.columns and 'Date_clean' in df.columns:
+#     # First, sort the DataFrame by 'Date_clean'
+#     df_sorted = df.sort_values('Date_clean')
+
+#     # Then, filter the DataFrame to only include rows where 'glucose' and 'Date_clean' are not null
+#     df_filtered = df_sorted[df_sorted['glucose'].notnull() & df_sorted['Date_clean'].notnull()]
+
+#     # Continue with your plot
+#     fig = px.line(df_filtered, x='Date_clean', y='glucose', title='Glucose levels over time')
+#     st.plotly_chart(fig)
+# else:
+#     st.write("The 'glucose' and/or 'Date_clean' columns could not be found in the DataFrame.")
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # # Make sure both glucose and Date_clean columns are not null
 # df_filtered = df[df['glucose'].notnull() & df['Date_clean'].notnull()]
@@ -345,26 +373,6 @@ st.write(df)
 #     st.plotly_chart(fig)
 # else:
 #     st.write("The 'glucose' and/or 'Date_clean' columns could not be found in the DataFrame.")
-
-
-# # Check if the columns 'glucose' and 'Date_clean' exist in the DataFrame
-# if 'glucose' in df.columns and 'Date_clean' in df.columns:
-#     # First, sort the DataFrame by 'Date_clean'
-#     df_sorted = df.sort_values('Date_clean')
-
-#     # Then, filter the DataFrame to only include rows where 'glucose' and 'Date_clean' are not null
-#     df_filtered = df_sorted[df_sorted['glucose'].notnull() & df_sorted['Date_clean'].notnull()]
-
-#     # Continue with your plot
-#     fig = px.line(df_filtered, x='Date_clean', y='glucose', title='Glucose levels over time')
-#     st.plotly_chart(fig)
-# else:
-#     st.write("The 'glucose' and/or 'Date_clean' columns could not be found in the DataFrame.")
-
-
-
-
-
 
 
 

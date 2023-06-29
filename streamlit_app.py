@@ -280,24 +280,39 @@ for index, row in df.iterrows():
     df.at[index, 'Date'] = json.dumps(messages)
 
 
+import re
 from datetime import datetime
+
+# The regular expression pattern for a date in the "dd-mm-yyyy hh:mm" format
+date_pattern = r"\d{2}-\d{2}-\d{4} \d{2}:\d{2}"
 
 # Iterate over the DataFrame
 for index, row in df.iterrows():
     # Extract the original date from the Date column
     original_date_str = row['Date']
     try:
-        # Convert the original date string to a datetime object
-        original_date = datetime.strptime(original_date_str, '%d-%m-%Y %H:%M')
+        # Search for the date in the original string
+        match = re.search(date_pattern, original_date_str)
+        if match:
+            # If a date is found, extract it
+            date_str = match.group()
+            
+            # Convert the date string to a datetime object
+            date = datetime.strptime(date_str, '%d-%m-%Y %H:%M')
 
-        # Convert the datetime object back to a string, but only with the desired parts
-        clean_date_str = datetime.strftime(original_date, '%d-%m-%Y %H:%M')
+            # Convert the datetime object back to a string
+            clean_date_str = datetime.strftime(date, '%d-%m-%Y %H:%M')
 
-        # Add the cleaned date to the Date_clean column
-        df.at[index, 'Date_clean'] = clean_date_str
+            # Add the cleaned date to the Date_clean column
+            df.at[index, 'Date_clean'] = clean_date_str
+        else:
+            # If no date is found, print a message
+            print(f"No date found in string {original_date_str} at index {index}")
     except ValueError:
         # In case the date string does not match the expected format
         print(f"Could not parse date string {original_date_str} at index {index}")
+
+st.write(df)
 
 st.write(df)
 

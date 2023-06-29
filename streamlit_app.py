@@ -3,6 +3,7 @@ import streamlit as st
 import PyPDF2
 import pandas as pd
 from io import BytesIO
+import json
 
 # Set the title of the Streamlit application
 st.title("Sheba Documents Analyzer")
@@ -127,6 +128,9 @@ example_dict_outcome = {
 
 # Initialize a new column 'Messages' with dtype object
 df['Messages'] = pd.Series(dtype=object)
+
+
+### ONE SHOT LEARNING 
 
 # Iterate through the DataFrame
 for index, row in df.iterrows():

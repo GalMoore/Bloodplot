@@ -4,6 +4,7 @@ import PyPDF2
 import pandas as pd
 from io import BytesIO
 import json
+import time
 
 # Set the title of the Streamlit application
 st.title("Sheba Documents Analyzer")
@@ -215,23 +216,52 @@ st.write(df)
 
 # extract date and add to df
 
+
+# Define the maximum number of attempts
+MAX_ATTEMPTS = 5
 example_date = "14-03-2023 01:12"
+
+# # Iterate through the DataFrame
+# for index, row in df.iterrows():
+#     print("collecting text from document in df and sending query to chatgpt ", index)
+#     document_text = row['Text']
+
+#     # Ask ChatGPT for dict of results for each document
+#     chat_response = openai.ChatCompletion.create(
+#         model="gpt-3.5-turbo",
+#         messages=[
+#             {"role": "system", "content": f"You are an israeli nurse in ICU with 20 years experience. When I give you a text string that includes a lab report like this: {example_document}, return a string with the date and time like this: {example_date}"},
+#             {"role": "user", \
+#              "content": f"{document_text}"}
+#         ]
+#     )
 
 # Iterate through the DataFrame
 for index, row in df.iterrows():
     print("collecting text from document in df and sending query to chatgpt ", index)
     document_text = row['Text']
 
-    # Ask ChatGPT for dict of results for each document
-    chat_response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": f"You are an israeli nurse in ICU with 20 years experience. When I give you a text string that includes a lab report like this: {example_document}, return a string with the date and time like this: {example_date}"},
-            {"role": "user", \
-             "content": f"{document_text}"}
-        ]
-    )
-
+    # Try to execute the API call with retries
+    for attempt in range(MAX_ATTEMPTS):
+        try:
+            # Ask ChatGPT for dict of results for each document
+            chat_response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "system", "content": f"You are an israeli nurse in ICU with 20 years experience. When I give you a text string that includes a lab report like this: {example_document}, return a string with the date and time like this: {example_date}"},
+                    {"role": "user", \
+                    "content": f"{document_text}"}
+                ]
+            )
+            break
+        except openai.error.ServiceUnavailableError:
+            if attempt < MAX_ATTEMPTS - 1:  # i.e. if it's not the last attempt
+                print(f"ServiceUnavailableError, retrying in 5 seconds...")
+                time.sleep(5)  # Wait for 5 seconds before next retry
+                continue
+            else:
+                raise
+                
     # Extract the content field
     messages = chat_response["choices"][0]["message"]["content"]
     # Replace single quotes with double quotes

@@ -168,6 +168,7 @@ for index, row in df.iterrows():
     # df.at[index, 'Messages'] = messages_dict
 
 
+st.write(df)  # display the dataframe on the screen
 
 
 

@@ -4,6 +4,15 @@ import streamlit as st
 # import pandas as pd
 # from io import BytesIO
 
+try:
+    # Attempt to import langchain
+    import openai
+    print("openai is installed.")
+    st.write("openai is installed.")
+    print("Version:", openai.__version__)
+except ImportError:
+    print("openai is not installed.")
+    st.write("openai is NOT installed.")
 
 # Set the title of the Streamlit application
 st.title("ChatGPT-like clone")

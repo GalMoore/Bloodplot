@@ -332,7 +332,6 @@ ax.set_ylabel('Glucose')
 
 # Using Streamlit's matplotlib plotting
 st.pyplot(fig)
-This code creates a time series plot of glucose level over time using the matplotlib library. The plot_date() function is used because the x-axis is a series of dates. The line connecting the points is solid. The title, x-label, and y-label are all set, and then the plot is shown in the Streamlit app using st.pyplot().
 
 
 

@@ -171,6 +171,42 @@ for index, row in df.iterrows():
 st.write(df)  # display the dataframe on the screen
 
 
+## From the gpt response - extract the dict of values
+def extract_values(message_str):
+    # Load string into dictionary
+    message_dict = json.loads(message_str)
 
+    # Define columns to extract
+    cols = {
+        "ph",
+        "pco2",
+        "po2",
+        "hco3 (bicarbonate)-calc.",
+        "base excess",
+        "hematocrit",
+        "hemoglobin",
+        "saturation, o2",
+        "oxyhemoglobin",
+        "carboxyhemoglobin",
+        "methemoglobin",
+        "deoxyhemoglobin",
+        "sodium",
+        "potassium",
+        "calcium, ionized",
+        "chloride",
+        "anion gap",
+        "glucose",
+        "lactate",
+    }
 
+    result = {}
+    for key, value in message_dict.items():
+        if isinstance(value, dict):
+            # If the value is another dictionary, recurse
+            result.update(extract_values(json.dumps(value)))  # convert dictionary back to string
+        elif key in cols:
+            result[key] = value
+    return result
 
+df = df.join(df['Messages'].apply(extract_values).apply(pd.Series))
+st.write(df)

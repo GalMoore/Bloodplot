@@ -312,7 +312,6 @@ for index, row in df.iterrows():
         # In case the date string does not match the expected format
         print(f"Could not parse date string {original_date_str} at index {index}")
 
-st.write(df)
 
 st.write(df)
 

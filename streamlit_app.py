@@ -183,9 +183,16 @@ st.write(df)
 
 ## From the gpt response - extract the dict of values
 def extract_values(message_str):
-    # Load string into dictionary
-    message_dict = json.loads(message_str)
+    # # Load string into dictionary
+    # message_dict = json.loads(message_str)
 
+    # Check if the input is a string before attempting to parse JSON
+    if isinstance(message_str, str):
+        # Load string into dictionary
+        message_dict = json.loads(message_str)
+    else:
+        return None
+        
     # Define columns to extract
     cols = {
         "ph",

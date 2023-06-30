@@ -341,28 +341,39 @@ import matplotlib.pyplot as plt
 
 
 
-# convert 'Date_clean' column to datetime
-df['Date_clean'] = pd.to_datetime(df['Date_clean'])
+# check if 'df' exists and is not empty
+if 'df' in locals() and not df.empty:
+    # convert 'Date_clean' column to datetime
+    df['Date_clean'] = pd.to_datetime(df['Date_clean'])
 
-# List of columns to plot (exclude 'Text' and 'Messages' columns)
-cols_to_plot = [col for col in df.columns if col not in ['Text', 'Messages', 'Date']]
+    # List of columns to plot (exclude 'Text' and 'Messages' columns)
+    cols_to_plot = [col for col in df.columns if col not in ['Text', 'Messages', 'Date']]
 
-# Loop over each column to plot
-for col in cols_to_plot:
-    # Skip if the column is not found in the DataFrame
-    if col not in df.columns:
-        continue
+    # Loop over each column to plot
+    for col in cols_to_plot:
+        # Skip if the column is not found in the DataFrame
+        if col not in df.columns:
+            continue
 
-    # Create a copy of the DataFrame
-    df_copy = df.copy()
+        # Create a copy of the DataFrame
+        df_copy = df.copy()
     
-    # Drop rows with missing values in the current column
-    df_copy.dropna(subset=[col], inplace=True)
+        # Drop rows with missing values in the current column
+        df_copy.dropna(subset=[col], inplace=True)
 
-    # Plot
-    if len(df_copy) > 0:  # check if dataframe after dropping NaN values is not empty
-        fig = px.line(df_copy, x='Date_clean', y=col, title=col)
-        st.plotly_chart(fig)
+        # Plot
+        if len(df_copy) > 0:  # check if dataframe after dropping NaN values is not empty
+            fig = px.line(df_copy, x='Date_clean', y=col, title=col)
+            st.plotly_chart(fig)
+else:
+    st.write("No PDF loaded. Please load a PDF file.")
+
+
+
+
+
+
+
 
 
 

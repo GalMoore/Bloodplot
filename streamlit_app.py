@@ -292,8 +292,8 @@ for index, row in df.iterrows():
 import re
 from datetime import datetime
 
-# The regular expression pattern for a date in the "dd/mm/yyyy" format
-date_pattern = r"\d{2}\/\d{2}\/\d{4}"
+# The regular expression pattern for a date in the "dd-mm-yyyy" format
+date_pattern = r"\d{2}-\d{2}-\d{4}"
 
 # The regular expression pattern for a time in the "hh:mm" format
 time_pattern = r"\d{2}:\d{2}"
@@ -316,7 +316,7 @@ for index, row in df.iterrows():
             date_time_str = f'{date_str} {time_str}'
 
             # Convert the combined string to a datetime object
-            date = datetime.strptime(date_time_str, '%d/%m/%Y %H:%M')
+            date = datetime.strptime(date_time_str, '%d-%m-%Y %H:%M')
 
             # Convert the datetime object back to a string
             clean_date_str = datetime.strftime(date, '%d-%m-%Y %H:%M')

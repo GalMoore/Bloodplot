@@ -226,27 +226,9 @@ df = df.join(df['Messages'].apply(extract_values).apply(pd.Series), rsuffix='_ex
 st.write(df)
 
 
-# extract date and add to df
-
-
 # Define the maximum number of attempts
 MAX_ATTEMPTS = 5
 example_date = "14-03-2023 01:12"
-
-# # Iterate through the DataFrame
-# for index, row in df.iterrows():
-#     print("collecting text from document in df and sending query to chatgpt ", index)
-#     document_text = row['Text']
-
-#     # Ask ChatGPT for dict of results for each document
-#     chat_response = openai.ChatCompletion.create(
-#         model="gpt-3.5-turbo",
-#         messages=[
-#             {"role": "system", "content": f"You are an israeli nurse in ICU with 20 years experience. When I give you a text string that includes a lab report like this: {example_document}, return a string with the date and time like this: {example_date}"},
-#             {"role": "user", \
-#              "content": f"{document_text}"}
-#         ]
-#     )
 
 # Iterate through the DataFrame
 for index, row in df.iterrows():
@@ -335,42 +317,6 @@ for index, row in df.iterrows():
 
 
 
-
-
-# extracts date but doesn't handle cases where therew is asome text between date and hour
-# import re
-# from datetime import datetime
-
-# # The regular expression pattern for a date in the "dd-mm-yyyy hh:mm" format
-# date_pattern = r"\d{2}-\d{2}-\d{4} \d{2}:\d{2}"
-
-# # Iterate over the DataFrame
-# for index, row in df.iterrows():
-#     # Extract the original date from the Date column
-#     original_date_str = row['Date']
-#     try:
-#         # Search for the date in the original string
-#         match = re.search(date_pattern, original_date_str)
-#         if match:
-#             # If a date is found, extract it
-#             date_str = match.group()
-            
-#             # Convert the date string to a datetime object
-#             date = datetime.strptime(date_str, '%d-%m-%Y %H:%M')
-
-#             # Convert the datetime object back to a string
-#             clean_date_str = datetime.strftime(date, '%d-%m-%Y %H:%M')
-
-#             # Add the cleaned date to the Date_clean column
-#             df.at[index, 'Date_clean'] = clean_date_str
-#         else:
-#             # If no date is found, print a message
-#             print(f"No date found in string {original_date_str} at index {index}")
-#     except ValueError:
-#         # In case the date string does not match the expected format
-#         print(f"Could not parse date string {original_date_str} at index {index}")
-
-
 # This line will display the final dataframe on the Streamlit UI, where the dataframe has been further updated with
 # a 'Date' column containing the extracted date and time from each document and a 'Date_clean' 
 # column containing the cleaned date and time.
@@ -379,23 +325,44 @@ st.write(df)
 import matplotlib.pyplot as plt
 
 
-# Check if the columns 'glucose' and 'Date_clean' exist in the DataFrame
-if 'glucose' in df.columns and 'Date_clean' in df.columns:
-    # First, sort the DataFrame by 'Date_clean'
-    df_sorted = df.sort_values('Date_clean')
+# # Check if the columns 'glucose' and 'Date_clean' exist in the DataFrame
+# if 'glucose' in df.columns and 'Date_clean' in df.columns:
+#     # First, sort the DataFrame by 'Date_clean'
+#     df_sorted = df.sort_values('Date_clean')
 
-    # Then, filter the DataFrame to only include rows where 'glucose' and 'Date_clean' are not null
-    df_filtered = df_sorted[df_sorted['glucose'].notnull() & df_sorted['Date_clean'].notnull()]
+#     # Then, filter the DataFrame to only include rows where 'glucose' and 'Date_clean' are not null
+#     df_filtered = df_sorted[df_sorted['glucose'].notnull() & df_sorted['Date_clean'].notnull()]
 
-    # Continue with your plot
-    fig = px.line(df_filtered, x='Date_clean', y='glucose', title='Glucose levels over time')
-    st.plotly_chart(fig)
-else:
-    st.write("The 'glucose' and/or 'Date_clean' columns could not be found in the DataFrame.")
-
-
+#     # Continue with your plot
+#     fig = px.line(df_filtered, x='Date_clean', y='glucose', title='Glucose levels over time')
+#     st.plotly_chart(fig)
+# else:
+#     st.write("The 'glucose' and/or 'Date_clean' columns could not be found in the DataFrame.")
 
 
+
+# convert 'Date_clean' column to datetime
+df['Date_clean'] = pd.to_datetime(df['Date_clean'])
+
+# List of columns to plot (exclude 'Text' and 'Messages' columns)
+cols_to_plot = [col for col in df.columns if col not in ['Text', 'Messages', 'Date']]
+
+# Loop over each column to plot
+for col in cols_to_plot:
+    # Skip if the column is not found in the DataFrame
+    if col not in df.columns:
+        continue
+
+    # Create a copy of the DataFrame
+    df_copy = df.copy()
+    
+    # Drop rows with missing values in the current column
+    df_copy.dropna(subset=[col], inplace=True)
+
+    # Plot
+    if len(df_copy) > 0:  # check if dataframe after dropping NaN values is not empty
+        fig = px.line(df_copy, x='Date_clean', y=col, title=col)
+        st.plotly_chart(fig)
 
 
 
@@ -435,11 +402,56 @@ else:
 #     st.write("The 'glucose' and/or 'Date_clean' columns could not be found in the DataFrame.")
 
 
+# # Iterate through the DataFrame
+# for index, row in df.iterrows():
+#     print("collecting text from document in df and sending query to chatgpt ", index)
+#     document_text = row['Text']
+
+#     # Ask ChatGPT for dict of results for each document
+#     chat_response = openai.ChatCompletion.create(
+#         model="gpt-3.5-turbo",
+#         messages=[
+#             {"role": "system", "content": f"You are an israeli nurse in ICU with 20 years experience. When I give you a text string that includes a lab report like this: {example_document}, return a string with the date and time like this: {example_date}"},
+#             {"role": "user", \
+#              "content": f"{document_text}"}
+#         ]
+#     )
 
 
 
 
+# extracts date but doesn't handle cases where therew is asome text between date and hour
+# import re
+# from datetime import datetime
 
+# # The regular expression pattern for a date in the "dd-mm-yyyy hh:mm" format
+# date_pattern = r"\d{2}-\d{2}-\d{4} \d{2}:\d{2}"
+
+# # Iterate over the DataFrame
+# for index, row in df.iterrows():
+#     # Extract the original date from the Date column
+#     original_date_str = row['Date']
+#     try:
+#         # Search for the date in the original string
+#         match = re.search(date_pattern, original_date_str)
+#         if match:
+#             # If a date is found, extract it
+#             date_str = match.group()
+            
+#             # Convert the date string to a datetime object
+#             date = datetime.strptime(date_str, '%d-%m-%Y %H:%M')
+
+#             # Convert the datetime object back to a string
+#             clean_date_str = datetime.strftime(date, '%d-%m-%Y %H:%M')
+
+#             # Add the cleaned date to the Date_clean column
+#             df.at[index, 'Date_clean'] = clean_date_str
+#         else:
+#             # If no date is found, print a message
+#             print(f"No date found in string {original_date_str} at index {index}")
+#     except ValueError:
+#         # In case the date string does not match the expected format
+#         print(f"Could not parse date string {original_date_str} at index {index}")
 
 
 

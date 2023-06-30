@@ -7,6 +7,21 @@ import json
 import time
 import plotly.express as px
 
+
+st.set_page_config(
+    page_title="Your Page Title",
+    page_icon=":emoji:",
+    layout="wide",
+    initial_sidebar_state="expanded",
+    theme={
+        "base": "light", # this will set the theme to light
+        "primaryColor":"#E694FF",
+        "secondaryBackgroundColor": "#F0F2F6",
+        "textColor": "#262730",
+        "font": "sans-serif"
+    }
+)
+
 # Set the title of the Streamlit application
 st.title("Sheba Documents Analyzer")
 

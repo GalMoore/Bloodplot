@@ -41,6 +41,7 @@ df = pd.DataFrame(data, columns=['Text'], index=filenames)
 # Convert text to lowercase
 df['Text'] = df['Text'].str.lower()
 
+##############################################################
 ####### print the text, extracted from pdf, into a df ########
 st.write(df)  # display the dataframe on the screen
 

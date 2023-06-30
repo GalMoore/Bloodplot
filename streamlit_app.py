@@ -289,26 +289,34 @@ for index, row in df.iterrows():
     # Convert dictionary into a string and update the corresponding column in the DataFrame
     df.at[index, 'Date'] = json.dumps(messages)
 
-
 import re
 from datetime import datetime
 
-# The regular expression pattern for a date in the "dd-mm-yyyy hh:mm" format
-date_pattern = r"\d{2}-\d{2}-\d{4} \d{2}:\d{2}"
+# The regular expression pattern for a date in the "dd-mm-yyyy" format
+date_pattern = r"\d{2}-\d{2}-\d{4}"
+
+# The regular expression pattern for a time in the "hh:mm" format
+time_pattern = r"\d{2}:\d{2}"
 
 # Iterate over the DataFrame
 for index, row in df.iterrows():
     # Extract the original date from the Date column
     original_date_str = row['Date']
     try:
-        # Search for the date in the original string
-        match = re.search(date_pattern, original_date_str)
-        if match:
-            # If a date is found, extract it
-            date_str = match.group()
-            
-            # Convert the date string to a datetime object
-            date = datetime.strptime(date_str, '%d-%m-%Y %H:%M')
+        # Search for the date and time in the original string
+        date_match = re.search(date_pattern, original_date_str)
+        time_match = re.search(time_pattern, original_date_str)
+        
+        if date_match and time_match:
+            # If a date and time are found, extract them
+            date_str = date_match.group()
+            time_str = time_match.group()
+
+            # Combine the date and time strings
+            date_time_str = f'{date_str} {time_str}'
+
+            # Convert the combined string to a datetime object
+            date = datetime.strptime(date_time_str, '%d-%m-%Y %H:%M')
 
             # Convert the datetime object back to a string
             clean_date_str = datetime.strftime(date, '%d-%m-%Y %H:%M')
@@ -316,11 +324,49 @@ for index, row in df.iterrows():
             # Add the cleaned date to the Date_clean column
             df.at[index, 'Date_clean'] = clean_date_str
         else:
-            # If no date is found, print a message
-            print(f"No date found in string {original_date_str} at index {index}")
+            # If no date or time is found, print a message
+            print(f"No date or time found in string {original_date_str} at index {index}")
     except ValueError:
-        # In case the date string does not match the expected format
-        print(f"Could not parse date string {original_date_str} at index {index}")
+        # In case the date or time string does not match the expected format
+        print(f"Could not parse date and time string {original_date_str} at index {index}")
+
+
+
+
+
+
+# extracts date but doesn't handle cases where therew is asome text between date and hour
+# import re
+# from datetime import datetime
+
+# # The regular expression pattern for a date in the "dd-mm-yyyy hh:mm" format
+# date_pattern = r"\d{2}-\d{2}-\d{4} \d{2}:\d{2}"
+
+# # Iterate over the DataFrame
+# for index, row in df.iterrows():
+#     # Extract the original date from the Date column
+#     original_date_str = row['Date']
+#     try:
+#         # Search for the date in the original string
+#         match = re.search(date_pattern, original_date_str)
+#         if match:
+#             # If a date is found, extract it
+#             date_str = match.group()
+            
+#             # Convert the date string to a datetime object
+#             date = datetime.strptime(date_str, '%d-%m-%Y %H:%M')
+
+#             # Convert the datetime object back to a string
+#             clean_date_str = datetime.strftime(date, '%d-%m-%Y %H:%M')
+
+#             # Add the cleaned date to the Date_clean column
+#             df.at[index, 'Date_clean'] = clean_date_str
+#         else:
+#             # If no date is found, print a message
+#             print(f"No date found in string {original_date_str} at index {index}")
+#     except ValueError:
+#         # In case the date string does not match the expected format
+#         print(f"Could not parse date string {original_date_str} at index {index}")
 
 
 # This line will display the final dataframe on the Streamlit UI, where the dataframe has been further updated with

@@ -43,7 +43,8 @@ df['Text'] = df['Text'].str.lower()
 
 ##############################################################
 ####### print the text, extracted from pdf, into a df ########
-st.write(df)  # display the dataframe on the screen
+st.write(df)  # This line will display the initial dataframe on the Streamlit UI. 
+# The dataframe contains the text extracted from uploaded PDF documents. 
 
 # Set the OpenAI API key from Streamlit secrets
 openai.api_key = st.secrets["openai_password"]
@@ -172,7 +173,10 @@ for index, row in df.iterrows():
     # df.at[index, 'Messages'] = messages_dict
 
 
-st.write(df)  # display the dataframe on the screen
+# This line will display the updated dataframe on the 
+# Streamlit UI after the chat responses are stored in a new 'Messages' column.
+# The 'Messages' column contains dictionaries of extracted lab results from each document.
+st.write(df) 
 
 
 ## From the gpt response - extract the dict of values
@@ -214,6 +218,9 @@ def extract_values(message_str):
     
 df = df.join(df['Messages'].apply(extract_values).apply(pd.Series), rsuffix='_extracted')
 # df = df.join(df['Messages'].apply(extract_values).apply(pd.Series))
+
+# This line will display the updated dataframe on the Streamlit UI after the values 
+# from the 'Messages' column have been extracted into their own respective columns. 
 st.write(df)
 
 
@@ -316,6 +323,9 @@ for index, row in df.iterrows():
         print(f"Could not parse date string {original_date_str} at index {index}")
 
 
+# This line will display the final dataframe on the Streamlit UI, where the dataframe has been further updated with
+# a 'Date' column containing the extracted date and time from each document and a 'Date_clean' 
+# column containing the cleaned date and time.
 st.write(df)
 
 import matplotlib.pyplot as plt

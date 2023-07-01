@@ -330,7 +330,14 @@ for index, row in df.iterrows():
 # This line will display the final dataframe on the Streamlit UI, where the dataframe has been further updated with
 # a 'Date' column containing the extracted date and time from each document and a 'Date_clean' 
 # column containing the cleaned date and time.
-st.write(df)
+cols = ["ph", "pco2", "po2", "hco3 (bicarbonate)-calc.", "base excess", "hematocrit", 
+        "hemoglobin", "saturation, o2", "oxyhemoglobin", "carboxyhemoglobin", 
+        "methemoglobin", "deoxyhemoglobin", "sodium", "potassium", "calcium, ionized", 
+        "chloride", "anion gap", "glucose", "lactate", "Date_clean"]
+
+df_subset = df[[col for col in cols if col in df.columns]]
+st.write(df_subset)
+# st.write(df)
 
 import matplotlib.pyplot as plt
 

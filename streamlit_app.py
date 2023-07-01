@@ -331,30 +331,13 @@ st.write(df)
 
 import matplotlib.pyplot as plt
 
-
-# # Check if the columns 'glucose' and 'Date_clean' exist in the DataFrame
-# if 'glucose' in df.columns and 'Date_clean' in df.columns:
-#     # First, sort the DataFrame by 'Date_clean'
-#     df_sorted = df.sort_values('Date_clean')
-
-#     # Then, filter the DataFrame to only include rows where 'glucose' and 'Date_clean' are not null
-#     df_filtered = df_sorted[df_sorted['glucose'].notnull() & df_sorted['Date_clean'].notnull()]
-
-#     # Continue with your plot
-#     fig = px.line(df_filtered, x='Date_clean', y='glucose', title='Glucose levels over time')
-#     st.plotly_chart(fig)
-# else:
-#     st.write("The 'glucose' and/or 'Date_clean' columns could not be found in the DataFrame.")
-
-
-
 # check if 'df' exists and is not empty
 if 'df' in locals() and not df.empty:
     # convert 'Date_clean' column to datetime
     df['Date_clean'] = pd.to_datetime(df['Date_clean'])
 
-    # List of columns to plot (exclude 'Text' and 'Messages' columns)
-    cols_to_plot = [col for col in df.columns if col not in ['Text', 'Messages', 'Date']]
+    # List of columns to plot (exclude 'Text', 'Messages', 'Date', and 'Date_clean' columns)
+    cols_to_plot = [col for col in df.columns if col not in ['Text', 'Messages', 'Date', 'Date_clean']]
 
     # Loop over each column to plot
     for col in cols_to_plot:
@@ -370,10 +353,37 @@ if 'df' in locals() and not df.empty:
 
         # Plot
         if len(df_copy) > 0:  # check if dataframe after dropping NaN values is not empty
-            fig = px.line(df_copy, x='Date_clean', y=col, title=col)
+            fig = px.scatter(df_copy, x='Date_clean', y=col, title=col)
             st.plotly_chart(fig)
 else:
     st.write("No PDF loaded. Please load a PDF file.")
+    
+# # check if 'df' exists and is not empty
+# if 'df' in locals() and not df.empty:
+#     # convert 'Date_clean' column to datetime
+#     df['Date_clean'] = pd.to_datetime(df['Date_clean'])
+
+#     # List of columns to plot (exclude 'Text' and 'Messages' columns)
+#     cols_to_plot = [col for col in df.columns if col not in ['Text', 'Messages', 'Date']]
+
+#     # Loop over each column to plot
+#     for col in cols_to_plot:
+#         # Skip if the column is not found in the DataFrame
+#         if col not in df.columns:
+#             continue
+
+#         # Create a copy of the DataFrame
+#         df_copy = df.copy()
+    
+#         # Drop rows with missing values in the current column
+#         df_copy.dropna(subset=[col], inplace=True)
+
+#         # Plot
+#         if len(df_copy) > 0:  # check if dataframe after dropping NaN values is not empty
+#             fig = px.scatter(df_copy, x='Date_clean', y=col, title=col)
+#             st.plotly_chart(fig)
+# else:
+#     st.write("No PDF loaded. Please load a PDF file.")
 
 
 
@@ -382,6 +392,27 @@ else:
 
 
 
+
+
+
+
+
+
+
+
+# # Check if the columns 'glucose' and 'Date_clean' exist in the DataFrame
+# if 'glucose' in df.columns and 'Date_clean' in df.columns:
+#     # First, sort the DataFrame by 'Date_clean'
+#     df_sorted = df.sort_values('Date_clean')
+
+#     # Then, filter the DataFrame to only include rows where 'glucose' and 'Date_clean' are not null
+#     df_filtered = df_sorted[df_sorted['glucose'].notnull() & df_sorted['Date_clean'].notnull()]
+
+#     # Continue with your plot
+#     fig = px.line(df_filtered, x='Date_clean', y='glucose', title='Glucose levels over time')
+#     st.plotly_chart(fig)
+# else:
+#     st.write("The 'glucose' and/or 'Date_clean' columns could not be found in the DataFrame.")
 
 
 

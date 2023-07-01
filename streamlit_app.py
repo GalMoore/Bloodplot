@@ -418,6 +418,8 @@ if 'df' in locals() and not df.empty:
             st.markdown(f"**{col}**: {descriptions.get(col, '')}")
             fig = px.scatter(df_copy, x='DateTime', y=col)
             st.plotly_chart(fig)
+            st.divider()
+
 else:
     # st.write("No PDF loaded. Please load a PDF file.")
     print("No PDF loaded. Please load a PDF file.")

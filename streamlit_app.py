@@ -9,7 +9,7 @@ import plotly.express as px
 import matplotlib.pyplot as plt
 
 # Set the title of the Streamlit application
-st.title("Medical Documents Analyzer")
+st.title("Medical Docs plotter")
 
 # Add a file uploader to the sidebar for the user to upload up to 10 documents
 uploaded_files = st.sidebar.file_uploader("Upload up to 10 documents", accept_multiple_files=True, type=['pdf'])

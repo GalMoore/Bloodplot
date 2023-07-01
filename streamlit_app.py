@@ -19,9 +19,6 @@ uploaded_files = st.sidebar.file_uploader("Upload up to 10 documents", accept_mu
 data = []
 filenames = []
 
-# display message explaining what to do if no files uploaded
-# if not uploaded_files:
-
 st.markdown("**Welcome to the :red[Medical Documents Analyzer]**, your friendly tool for \
 deciphering medical readings!")
 
@@ -37,8 +34,6 @@ st.markdown(f'<div style="text-align: justify;">{my_intro_text}</div>', unsafe_a
 st.markdown("\n")
 st.markdown("Once you **:blue[upload your pdf files on the left sidebar]** the graphs will slowly start populating below")
 
-
-    
 # Loop over each uploaded file
 if uploaded_files:
     st.sidebar.write("You have uploaded the following files:")
@@ -63,9 +58,7 @@ df = pd.DataFrame(data, columns=['Text'], index=filenames)
 # Convert text to lowercase
 df['Text'] = df['Text'].str.lower()
 
-
 ##############################################################
-####### print the text, extracted from pdf, into a df ########
 # DEBUG 1 #
 # st.write(df)  # This line will display the initial dataframe on the Streamlit UI. 
 # The dataframe contains the text extracted from uploaded PDF documents. 
@@ -75,7 +68,6 @@ if 'df' in locals() and not df.empty:
     # Check if 'Text' column exists in the DataFrame
     if 'Text' in df.columns:
         st.success('Extracted text from pdfs of lab results', icon="✅")
-
 
 # Set the OpenAI API key from Streamlit secrets
 openai.api_key = st.secrets["openai_password"]
@@ -137,7 +129,6 @@ if len(df) > 0 and "Text" in df.columns and len(df["Text"]) > 0:
     #     print(line)
     #     st.write(line)
 else:
-    # st.write("No document found.")
     print("checking that this reaches log in manage app. ")
 
 example_dict_outcome = {
@@ -164,7 +155,6 @@ example_dict_outcome = {
 
 # Initialize a new column 'Messages' with dtype object
 df['Messages'] = pd.Series(dtype=object)
-
 
 ### ONE SHOT LEARNING 
 # Iterate through the DataFrame
@@ -199,10 +189,6 @@ for index, row in df.iterrows():
     # Convert dictionary into a string and update the corresponding column in the DataFrame
     df.at[index, 'Messages'] = json.dumps(messages_dict)
 
-    # # Update the corresponding column in the DataFrame
-    # df.at[index, 'Messages'] = messages_dict
-
-
 # This line will display the updated dataframe on the 
 # Streamlit UI after the chat responses are stored in a new 'Messages' column.
 # The 'Messages' column contains dictionaries of extracted lab results from each document.
@@ -229,25 +215,11 @@ def extract_values(message_str):
         
     # Define columns to extract
     cols = {
-        "ph",
-        "pco2",
-        "po2",
-        "hco3 (bicarbonate)-calc.",
-        "base excess",
-        "hematocrit",
-        "hemoglobin",
-        "saturation, o2",
-        "oxyhemoglobin",
-        "carboxyhemoglobin",
-        "methemoglobin",
-        "deoxyhemoglobin",
-        "sodium",
-        "potassium",
-        "calcium, ionized",
-        "chloride",
-        "anion gap",
-        "glucose",
-        "lactate",
+        "ph","pco2","po2","hco3 (bicarbonate)-calc.",
+        "base excess","hematocrit","hemoglobin","saturation, o2",
+        "oxyhemoglobin","carboxyhemoglobin","methemoglobin","deoxyhemoglobin",
+        "sodium","potassium","calcium, ionized","chloride",
+        "anion gap","glucose","lactate",
     }
 
     result = {}
@@ -382,62 +354,6 @@ for index, row in df.iterrows():
         # In case the date or time string does not match the expected format
         print(f"Could not parse date and time string {original_date_str} at index {index}")
 
-
-
-
-# This line will display the final dataframe on the Streamlit UI, where the dataframe has been further updated with
-# a 'Date' column containing the extracted date and time from each document and a 'Date_clean' 
-# column containing the cleaned date and time.
-# cols = ["ph", "pco2", "po2", "hco3 (bicarbonate)-calc.", "base excess", "hematocrit", 
-#         "hemoglobin", "saturation, o2", "oxyhemoglobin", "carboxyhemoglobin", 
-#         "methemoglobin", "deoxyhemoglobin", "sodium", "potassium", "calcium, ionized", 
-#         "chloride", "anion gap", "glucose", "lactate", "Date_clean"]
-
-# df_subset = df[[col for col in cols if col in df.columns]]
-
-# # Check if 'Date_clean' column exists in subset
-# if 'Date_clean' in df_subset.columns:
-#     # Convert 'Date_clean' to datetime
-#     df_subset['Date_clean'] = pd.to_datetime(df_subset['Date_clean'])
-#     df_subset = df_subset.sort_values(by="Date_clean")
-
-# if not df_subset.empty:
-#     st.divider()
-#     st.subheader('Here is a summary of your pdf files in a dataframe')
-
-#     # st.write(data=df_subset, width=40, height=20)
-#     st.write(df_subset)
-# else:
-#     # st.write("No data to display.Browse files and upload multiple pdf files")
-#     print("No data to display.Browse files and upload multiple pdf files")
-
-# # check if 'df' exists and is not empty
-# if 'df' in locals() and not df.empty:
-#     # convert 'Date_clean' column to datetime
-#     df['Date_clean'] = pd.to_datetime(df['Date_clean'])
-
-#     # List of columns to plot (exclude 'Text', 'Messages', 'Date', and 'Date_clean' columns)
-#     cols_to_plot = [col for col in df.columns if col not in ['Text', 'Messages', 'Date', 'Date_clean']]
-
-#     # Loop over each column to plot
-#     for col in cols_to_plot:
-#         # Skip if the column is not found in the DataFrame
-#         if col not in df.columns:
-#             continue
-
-#         # Create a copy of the DataFrame
-#         df_copy = df.copy()
-    
-#         # Drop rows with missing values in the current column
-#         df_copy.dropna(subset=[col], inplace=True)
-
-#         # Plot
-#         if len(df_copy) > 0:  # check if dataframe after dropping NaN values is not empty
-#             fig = px.scatter(df_copy, x='Date_clean', y=col, title=col)
-#             st.plotly_chart(fig)
-# else:
-#     # st.write("No PDF loaded. Please load a PDF file.")
-#     print("No PDF loaded. Please load a PDF file.")
 
 cols = ["ph", "pco2", "po2", "hco3 (bicarbonate)-calc.", "base excess", "hematocrit", 
         "hemoglobin", "saturation, o2", "oxyhemoglobin", "carboxyhemoglobin", 
@@ -643,4 +559,70 @@ else:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+# This line will display the final dataframe on the Streamlit UI, where the dataframe has been further updated with
+# a 'Date' column containing the extracted date and time from each document and a 'Date_clean' 
+# column containing the cleaned date and time.
+# cols = ["ph", "pco2", "po2", "hco3 (bicarbonate)-calc.", "base excess", "hematocrit", 
+#         "hemoglobin", "saturation, o2", "oxyhemoglobin", "carboxyhemoglobin", 
+#         "methemoglobin", "deoxyhemoglobin", "sodium", "potassium", "calcium, ionized", 
+#         "chloride", "anion gap", "glucose", "lactate", "Date_clean"]
+
+# df_subset = df[[col for col in cols if col in df.columns]]
+
+# # Check if 'Date_clean' column exists in subset
+# if 'Date_clean' in df_subset.columns:
+#     # Convert 'Date_clean' to datetime
+#     df_subset['Date_clean'] = pd.to_datetime(df_subset['Date_clean'])
+#     df_subset = df_subset.sort_values(by="Date_clean")
+
+# if not df_subset.empty:
+#     st.divider()
+#     st.subheader('Here is a summary of your pdf files in a dataframe')
+
+#     # st.write(data=df_subset, width=40, height=20)
+#     st.write(df_subset)
+# else:
+#     # st.write("No data to display.Browse files and upload multiple pdf files")
+#     print("No data to display.Browse files and upload multiple pdf files")
+
+# # check if 'df' exists and is not empty
+# if 'df' in locals() and not df.empty:
+#     # convert 'Date_clean' column to datetime
+#     df['Date_clean'] = pd.to_datetime(df['Date_clean'])
+
+#     # List of columns to plot (exclude 'Text', 'Messages', 'Date', and 'Date_clean' columns)
+#     cols_to_plot = [col for col in df.columns if col not in ['Text', 'Messages', 'Date', 'Date_clean']]
+
+#     # Loop over each column to plot
+#     for col in cols_to_plot:
+#         # Skip if the column is not found in the DataFrame
+#         if col not in df.columns:
+#             continue
+
+#         # Create a copy of the DataFrame
+#         df_copy = df.copy()
+    
+#         # Drop rows with missing values in the current column
+#         df_copy.dropna(subset=[col], inplace=True)
+
+#         # Plot
+#         if len(df_copy) > 0:  # check if dataframe after dropping NaN values is not empty
+#             fig = px.scatter(df_copy, x='Date_clean', y=col, title=col)
+#             st.plotly_chart(fig)
+# else:
+#     # st.write("No PDF loaded. Please load a PDF file.")
+#     print("No PDF loaded. Please load a PDF file.")
 

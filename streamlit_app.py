@@ -363,6 +363,9 @@ if 'Date_clean' in df_subset.columns:
     df_subset = df_subset.sort_values(by="Date_clean")
 
 if not df_subset.empty:
+    st.divider()
+    st.subheader('Here is a summary of your pdf files in a dataframe')
+
     # st.write(data=df_subset, width=40, height=20)
     st.write(df_subset)
 else:

@@ -20,7 +20,7 @@ filenames = []
 
 # display message explaining what to do if no files uploaded
 if not uploaded_files:
-   my_intro_text = "Welcome to the Medical Documents Analyzer, your friendly tool for \
+   my_intro_text = "**Welcome to the Medical Documents Analyzer**, your friendly tool for \
    deciphering medical readings! \
    We know medical jargon can feel like trying to read alien \
    hieroglyphics, but don't worry, we've got you covered. Just upload your PDF files (no more than 10 at a time please) \

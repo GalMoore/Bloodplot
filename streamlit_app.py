@@ -19,22 +19,22 @@ data = []
 filenames = []
 
 # display message explaining what to do if no files uploaded
-if not uploaded_files:
+# if not uploaded_files:
 
-   st.markdown("**Welcome to the :red[Medical Documents Analyzer]**, your friendly tool for \
-   deciphering medical readings!")
-   
-   my_intro_text = "We know medical jargon can feel like trying to read alien \
-   hieroglyphics, but don't worry, we've got you covered. Just upload your PDF files (no more than 10 at a time please) \
-   on the left sidebar. \
-   Once you've done that, take a breather while we crunch through the medical gobbledygook. You'll see a list of your \
-   uploaded files pop up faster than you can say 'Otorhinolaryngologist' followed by graphs of readings of your selected metrics! \
-   We're here to ensure that you, and your loved ones, can understand medical reports without needing a PhD in medicine, \
-   because let's face it, we all need a helping hand in this complex medical universe!"
+st.markdown("**Welcome to the :red[Medical Documents Analyzer]**, your friendly tool for \
+deciphering medical readings!")
 
-   st.markdown(f'<div style="text-align: justify;">{my_intro_text}</div>', unsafe_allow_html=True)
-   st.markdown("\n")
-   st.markdown("Once you **:blue[upload your pdf files on the left sidebar]** the graphs will slowly start populating")
+my_intro_text = "We know medical jargon can feel like trying to read alien \
+hieroglyphics, but don't worry, we've got you covered. Just upload your PDF files (no more than 10 at a time please) \
+on the left sidebar. \
+Once you've done that, take a breather while we crunch through the medical gobbledygook. You'll see a list of your \
+uploaded files pop up faster than you can say 'Otorhinolaryngologist' followed by graphs of readings of your selected metrics! \
+We're here to ensure that you, and your loved ones, can understand medical reports without needing a PhD in medicine, \
+because let's face it, we all need a helping hand in this complex medical universe!"
+
+st.markdown(f'<div style="text-align: justify;">{my_intro_text}</div>', unsafe_allow_html=True)
+st.markdown("\n")
+st.markdown("Once you **:blue[upload your pdf files on the left sidebar]** the graphs will slowly start populating below")
 
 
     

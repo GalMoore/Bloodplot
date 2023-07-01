@@ -30,7 +30,7 @@ if not uploaded_files:
     because let's face it, we all need a helping hand in this complex medical universe!"
     
     # st.markdown('<div style="text-align: center;">Hello World!</div>', unsafe_allow_html=True)
-    st.markdown(f'<div style="text-align: center;">{my_intro_text}</div>', unsafe_allow_html=True)
+    st.markdown(f'<div style="text-align: justify;">{my_intro_text}</div>', unsafe_allow_html=True)
 
     # st.write("Welcome to the Medical Documents Analyzer, your friendly tool for \
     # deciphering medical readings! \n \n  We know medical jargon can feel like trying to read alien \

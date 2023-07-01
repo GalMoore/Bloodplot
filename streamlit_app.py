@@ -208,7 +208,12 @@ for index, row in df.iterrows():
 # The 'Messages' column contains dictionaries of extracted lab results from each document.
 # DEBUG 2#
 # st.write(df) 
-# st.success('Extracted dictionary of lab results', icon="✅")
+
+# check if 'df' exists and is not empty
+if 'df' in locals() and not df.empty:
+    # Check if 'Messages' column exists in the DataFrame
+    if 'Messages' in df.columns:
+        st.success('Extract the lab result values using gpt into a dict structure in df', icon="✅")
 
 
 ## From the gpt response - extract the dict of values

@@ -23,8 +23,8 @@ if not uploaded_files:
    my_intro_text = "Welcome to the Medical Documents Analyzer, your friendly tool for \
    deciphering medical readings! \
    \n\nWe know medical jargon can feel like trying to read alien \
-   hieroglyphics, but don't worry, we've got you covered. Just upload your 10 PDF files (no more than 10 at a time) \
-   on the left sidebar. \
+   hieroglyphics, but don't worry, we've got you covered. Just upload your PDF files (no more than 10 at a time please) \
+   on the left sidebar. \n\n \
    Once you've done that, take a breather while we crunch through the medical gobbledygook. You'll see a list of your \
    uploaded files pop up faster than you can say 'Otorhinolaryngologist' followed by graphs of readings of your selected metrics! \
    \n\nWe're here to ensure that you, and your loved ones, can understand medical reports without needing a PhD in medicine, \

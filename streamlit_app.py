@@ -37,15 +37,24 @@ if uploaded_files:
         # Append the filename to the filenames list
         filenames.append(file.name)
 
-# Create a DataFrame
-df = pd.DataFrame(data, columns=['Text'], index=filenames)
+try:
+    # Create a DataFrame
+    df = pd.DataFrame(data, columns=['Text'], index=filenames)
+    
+    # Convert text to lowercase
+    df['Text'] = df['Text'].str.lower()
 
-# Convert text to lowercase
-df['Text'] = df['Text'].str.lower()
-
+except Exception as e:
+    # This line will display the initial dataframe on the Streamlit UI. 
+    # The dataframe contains the text extracted from uploaded PDF documents. 
+    st.write(df)
+    st.error(f"An error occurred: {e}")
+else:
+    st.success("Stage 1 completed successfully without errors.")
+    
 ##############################################################
 ####### print the text, extracted from pdf, into a df ########
-st.write(df)  # This line will display the initial dataframe on the Streamlit UI. 
+# st.write(df)  # This line will display the initial dataframe on the Streamlit UI. 
 # The dataframe contains the text extracted from uploaded PDF documents. 
 
 # Set the OpenAI API key from Streamlit secrets

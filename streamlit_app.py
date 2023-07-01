@@ -42,7 +42,7 @@ Our aim? Making medical reports accessible without a medicine degree. After all,
 
 st.markdown(f'<div style="text-align: justify;">{my_intro_text}</div>', unsafe_allow_html=True)
 st.markdown("\n")
-st.markdown("**Upload your PDF files on the left sidebar** and watch the graphs populate below.")
+st.markdown("**:blue[Upload your PDF files on the left sidebar]** and watch the graphs populate below.")
 
 # Loop over each uploaded file
 if uploaded_files:

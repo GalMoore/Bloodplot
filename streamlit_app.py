@@ -69,6 +69,7 @@ df['Text'] = df['Text'].str.lower()
 # DEBUG 1 #
 # st.write(df)  # This line will display the initial dataframe on the Streamlit UI. 
 # The dataframe contains the text extracted from uploaded PDF documents. 
+# st.success('Extracted dictionary of lab results', icon="✅")
 
 # Set the OpenAI API key from Streamlit secrets
 openai.api_key = st.secrets["openai_password"]
@@ -201,7 +202,7 @@ for index, row in df.iterrows():
 # The 'Messages' column contains dictionaries of extracted lab results from each document.
 # DEBUG 2#
 # st.write(df) 
-st.success('Extracted dictionary of lab results', icon="✅")
+# st.success('Extracted dictionary of lab results', icon="✅")
 
 
 ## From the gpt response - extract the dict of values

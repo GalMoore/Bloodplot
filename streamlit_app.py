@@ -350,6 +350,57 @@ for index, row in df.iterrows():
 # This line will display the final dataframe on the Streamlit UI, where the dataframe has been further updated with
 # a 'Date' column containing the extracted date and time from each document and a 'Date_clean' 
 # column containing the cleaned date and time.
+# cols = ["ph", "pco2", "po2", "hco3 (bicarbonate)-calc.", "base excess", "hematocrit", 
+#         "hemoglobin", "saturation, o2", "oxyhemoglobin", "carboxyhemoglobin", 
+#         "methemoglobin", "deoxyhemoglobin", "sodium", "potassium", "calcium, ionized", 
+#         "chloride", "anion gap", "glucose", "lactate", "Date_clean"]
+
+# df_subset = df[[col for col in cols if col in df.columns]]
+
+# # Check if 'Date_clean' column exists in subset
+# if 'Date_clean' in df_subset.columns:
+#     # Convert 'Date_clean' to datetime
+#     df_subset['Date_clean'] = pd.to_datetime(df_subset['Date_clean'])
+#     df_subset = df_subset.sort_values(by="Date_clean")
+
+# if not df_subset.empty:
+#     st.divider()
+#     st.subheader('Here is a summary of your pdf files in a dataframe')
+
+#     # st.write(data=df_subset, width=40, height=20)
+#     st.write(df_subset)
+# else:
+#     # st.write("No data to display.Browse files and upload multiple pdf files")
+#     print("No data to display.Browse files and upload multiple pdf files")
+
+# # check if 'df' exists and is not empty
+# if 'df' in locals() and not df.empty:
+#     # convert 'Date_clean' column to datetime
+#     df['Date_clean'] = pd.to_datetime(df['Date_clean'])
+
+#     # List of columns to plot (exclude 'Text', 'Messages', 'Date', and 'Date_clean' columns)
+#     cols_to_plot = [col for col in df.columns if col not in ['Text', 'Messages', 'Date', 'Date_clean']]
+
+#     # Loop over each column to plot
+#     for col in cols_to_plot:
+#         # Skip if the column is not found in the DataFrame
+#         if col not in df.columns:
+#             continue
+
+#         # Create a copy of the DataFrame
+#         df_copy = df.copy()
+    
+#         # Drop rows with missing values in the current column
+#         df_copy.dropna(subset=[col], inplace=True)
+
+#         # Plot
+#         if len(df_copy) > 0:  # check if dataframe after dropping NaN values is not empty
+#             fig = px.scatter(df_copy, x='Date_clean', y=col, title=col)
+#             st.plotly_chart(fig)
+# else:
+#     # st.write("No PDF loaded. Please load a PDF file.")
+#     print("No PDF loaded. Please load a PDF file.")
+
 cols = ["ph", "pco2", "po2", "hco3 (bicarbonate)-calc.", "base excess", "hematocrit", 
         "hemoglobin", "saturation, o2", "oxyhemoglobin", "carboxyhemoglobin", 
         "methemoglobin", "deoxyhemoglobin", "sodium", "potassium", "calcium, ionized", 
@@ -362,6 +413,9 @@ if 'Date_clean' in df_subset.columns:
     # Convert 'Date_clean' to datetime
     df_subset['Date_clean'] = pd.to_datetime(df_subset['Date_clean'])
     df_subset = df_subset.sort_values(by="Date_clean")
+
+# Rename 'Date_clean' to 'DateTime'
+df_subset.rename(columns={'Date_clean': 'DateTime'}, inplace=True)
 
 if not df_subset.empty:
     st.divider()
@@ -378,8 +432,11 @@ if 'df' in locals() and not df.empty:
     # convert 'Date_clean' column to datetime
     df['Date_clean'] = pd.to_datetime(df['Date_clean'])
 
+    # Rename 'Date_clean' to 'DateTime' in the main dataframe
+    df.rename(columns={'Date_clean': 'DateTime'}, inplace=True)
+
     # List of columns to plot (exclude 'Text', 'Messages', 'Date', and 'Date_clean' columns)
-    cols_to_plot = [col for col in df.columns if col not in ['Text', 'Messages', 'Date', 'Date_clean']]
+    cols_to_plot = [col for col in df.columns if col not in ['Text', 'Messages', 'Date', 'DateTime']]
 
     # Loop over each column to plot
     for col in cols_to_plot:
@@ -395,11 +452,12 @@ if 'df' in locals() and not df.empty:
 
         # Plot
         if len(df_copy) > 0:  # check if dataframe after dropping NaN values is not empty
-            fig = px.scatter(df_copy, x='Date_clean', y=col, title=col)
+            fig = px.scatter(df_copy, x='DateTime', y=col, title=col)
             st.plotly_chart(fig)
 else:
     # st.write("No PDF loaded. Please load a PDF file.")
     print("No PDF loaded. Please load a PDF file.")
+    
     
 # # check if 'df' exists and is not empty
 # if 'df' in locals() and not df.empty:

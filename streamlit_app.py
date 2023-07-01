@@ -230,25 +230,13 @@ df = df.join(df['Messages'].apply(extract_values).apply(pd.Series), rsuffix='_ex
 # check if 'df' exists and is not empty
 if 'df' in locals() and not df.empty:
     cols = {
-        "ph",
-        "pco2",
-        "po2",
-        "hco3 (bicarbonate)-calc.",
-        "base excess",
-        "hematocrit",
-        "hemoglobin",
-        "saturation, o2",
-        "oxyhemoglobin",
-        "carboxyhemoglobin",
-        "methemoglobin",
-        "deoxyhemoglobin",
-        "sodium",
-        "potassium",
-        "calcium, ionized",
-        "chloride",
-        "anion gap",
-        "glucose",
-        "lactate",
+        "ph","pco2","po2",
+        "hco3 (bicarbonate)-calc.","base excess","hematocrit",
+        "hemoglobin","saturation, o2","oxyhemoglobin",
+        "carboxyhemoglobin","methemoglobin",
+        "deoxyhemoglobin","sodium",
+        "potassium","calcium, ionized","chloride",
+        "anion gap","glucose","lactate",
     }
     # Check if any of the columns exist in the DataFrame
     if any(col in df.columns for col in cols):

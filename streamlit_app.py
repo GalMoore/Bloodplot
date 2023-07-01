@@ -21,12 +21,12 @@ filenames = []
 # display message explaining what to do if no files uploaded
 if not uploaded_files:
     st.write("Welcome to the Medical Documents Analyzer, your friendly tool for \
-    deciphering medical readings! We know medical jargon can feel like trying to read alien \
+    deciphering medical readings! \n \n  We know medical jargon can feel like trying to read alien \
     hieroglyphics, but don't worry, we've got you covered. Just upload your 10 PDF files (no more than 10 at a time) \
     on the left sidebar. \
     Once you've done that, take a breather while we crunch through the medical gobbledygook. You'll see a list of your \
     uploaded files pop up faster than you can say 'Otorhinolaryngologist' followed by graphs of readings of your selected metrics! \
-    We're here to ensure that you, and your loved ones, can understand medical reports without needing a PhD in medicine, \
+    \n \n We're here to ensure that you, and your loved ones, can understand medical reports without needing a PhD in medicine, \
     because let's face it, we all need a helping hand in this complex medical universe!")
     
 # Loop over each uploaded file

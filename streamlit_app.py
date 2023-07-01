@@ -374,7 +374,8 @@ if 'df' in locals() and not df.empty:
             fig = px.scatter(df_copy, x='Date_clean', y=col, title=col)
             st.plotly_chart(fig)
 else:
-    st.write("No PDF loaded. Please load a PDF file.")
+    # st.write("No PDF loaded. Please load a PDF file.")
+    print("No PDF loaded. Please load a PDF file.")
     
 # # check if 'df' exists and is not empty
 # if 'df' in locals() and not df.empty:

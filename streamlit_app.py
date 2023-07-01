@@ -346,7 +346,8 @@ if not df_subset.empty:
     # st.write(data=df_subset, width=40, height=20)
     st.write(df_subset)
 else:
-    st.write("No data to display.Browse files and upload multiple pdf files")
+    # st.write("No data to display.Browse files and upload multiple pdf files")
+    print("No data to display.Browse files and upload multiple pdf files")
 
 # check if 'df' exists and is not empty
 if 'df' in locals() and not df.empty:

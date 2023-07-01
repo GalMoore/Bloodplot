@@ -19,21 +19,6 @@ uploaded_files = st.sidebar.file_uploader("Upload up to 10 documents", accept_mu
 data = []
 filenames = []
 
-# st.markdown("**Welcome to the :red[Medical Documents Analyzer]**, your friendly tool for \
-# deciphering medical readings!")
-
-# my_intro_text = "We know medical jargon can feel like trying to read alien \
-# hieroglyphics, but don't worry, we've got you covered. Just upload your PDF files (no more than 10 at a time please) \
-# on the left sidebar. \
-# Once you've done that, take a breather while we crunch through the medical gobbledygook. You'll see a list of your \
-# uploaded files pop up faster than you can say 'Otorhinolaryngologist' followed by graphs of readings of your selected metrics! \
-# We're here to ensure that you, and your loved ones, can understand medical reports without needing a PhD in medicine, \
-# because let's face it, we all need a helping hand in this complex medical universe!"
-
-# st.markdown(f'<div style="text-align: justify;">{my_intro_text}</div>', unsafe_allow_html=True)
-# st.markdown("\n")
-# st.markdown("Once you **:blue[upload your pdf files on the left sidebar]** the graphs will slowly start populating below")
-
 st.markdown("**Welcome to the Medical Documents Analyzer**, your go-to tool for plotting Blood Gas work values from PDFs!")
 
 my_intro_text = "Medical jargon can seem cryptic, but we simplify it. Upload up to 10 PDFs \

@@ -22,7 +22,7 @@ filenames = []
 if not uploaded_files:
     my_intro_text = "Welcome to the Medical Documents Analyzer, your friendly tool for \
     deciphering medical readings! \
-    \n \n  We know medical jargon can feel like trying to read alien \
+    \n \n  \n We know medical jargon can feel like trying to read alien \
     hieroglyphics, but don't worry, we've got you covered. Just upload your 10 PDF files (no more than 10 at a time) \
     on the left sidebar. \
     Once you've done that, take a breather while we crunch through the medical gobbledygook. You'll see a list of your \

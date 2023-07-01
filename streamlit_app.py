@@ -6,8 +6,7 @@ from io import BytesIO
 import json
 import time
 import plotly.express as px
-
-
+import matplotlib.pyplot as plt
 
 # Set the title of the Streamlit application
 st.title("Medical Documents Analyzer")
@@ -344,15 +343,10 @@ if 'Date_clean' in df_subset.columns:
     df_subset = df_subset.sort_values(by="Date_clean")
 
 if not df_subset.empty:
-    st.dataframe(data=df_subset, width=40, height=20)
+    # st.write(data=df_subset, width=40, height=20)
+    st.write(df_subset)
 else:
     st.write("No data to display.Browse files and upload multiple pdf files")
-    
-# st.dataframe(data=df_subset, width=40, height=20)
-# st.write(df_subset)
-# st.write(df)
-
-import matplotlib.pyplot as plt
 
 # check if 'df' exists and is not empty
 if 'df' in locals() and not df.empty:

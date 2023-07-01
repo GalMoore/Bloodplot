@@ -343,7 +343,12 @@ if 'Date_clean' in df_subset.columns:
     df_subset['Date_clean'] = pd.to_datetime(df_subset['Date_clean'])
     df_subset = df_subset.sort_values(by="Date_clean")
 
-st.dataframe(data=df_subset, width=40, height=20)
+if not df_subset.empty:
+    st.dataframe(data=df_subset, width=40, height=20)
+else:
+    st.write("No data to display.Browse files and upload multiple pdf files")
+    
+# st.dataframe(data=df_subset, width=40, height=20)
 # st.write(df_subset)
 # st.write(df)
 

@@ -69,7 +69,13 @@ df['Text'] = df['Text'].str.lower()
 # DEBUG 1 #
 # st.write(df)  # This line will display the initial dataframe on the Streamlit UI. 
 # The dataframe contains the text extracted from uploaded PDF documents. 
-# st.success('Extracted dictionary of lab results', icon="✅")
+
+# check if 'df' exists and is not empty
+if 'df' in locals() and not df.empty:
+    # Check if 'Text' column exists in the DataFrame
+    if 'Text' in df.columns:
+        st.success('Extracted dictionary of lab results', icon="✅")
+
 
 # Set the OpenAI API key from Streamlit secrets
 openai.api_key = st.secrets["openai_password"]

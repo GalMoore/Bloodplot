@@ -18,6 +18,11 @@ uploaded_files = st.sidebar.file_uploader("Upload up to 10 documents", accept_mu
 data = []
 filenames = []
 
+# display message explaining what to do if no files uploaded
+if !uploaded_files:
+    st.write("lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum\
+    lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum\
+    lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum")
 # Loop over each uploaded file
 if uploaded_files:
     st.sidebar.write("You have uploaded the following files:")

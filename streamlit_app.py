@@ -20,11 +20,15 @@ filenames = []
 
 # display message explaining what to do if no files uploaded
 if not uploaded_files:
-   my_intro_text = "<b>Welcome to the Medical Documents Analyzer</b>, your friendly tool for \
-   deciphering medical readings! \
-   We know medical jargon can feel like trying to read alien \
-   hieroglyphics, but don't worry, we've got you covered. :red[Just upload your PDF files (no more than 10 at a time please) \
-   on the left sidebar]. \
+
+   st.markdown("This text is :red[colored red], and this is **:blue[colored]** and bold.")
+
+   st.markdown("<b>Welcome to the :red[Medical Documents Analyzer</b>], your friendly tool for \
+   deciphering medical readings!")
+   
+   my_intro_text = "We know medical jargon can feel like trying to read alien \
+   hieroglyphics, but don't worry, we've got you covered. Just upload your PDF files (no more than 10 at a time please) \
+   on the left sidebar. \
    Once you've done that, take a breather while we crunch through the medical gobbledygook. You'll see a list of your \
    uploaded files pop up faster than you can say 'Otorhinolaryngologist' followed by graphs of readings of your selected metrics! \
    We're here to ensure that you, and your loved ones, can understand medical reports without needing a PhD in medicine, \

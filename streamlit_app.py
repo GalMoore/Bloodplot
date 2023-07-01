@@ -222,6 +222,7 @@ df = df.join(df['Messages'].apply(extract_values).apply(pd.Series), rsuffix='_ex
 # DEBUG 3 #
 # st.write(df)
 
+############# If new columns were created for each value - print success message ########
 # check if 'df' exists and is not empty
 if 'df' in locals() and not df.empty:
     cols = {
@@ -236,6 +237,7 @@ if 'df' in locals() and not df.empty:
     # Check if any of the columns exist in the DataFrame
     if any(col in df.columns for col in cols):
         st.success('Extracted the dict of lab results into respective cols in df', icon="✅")
+############################################################################################
 
 # Define the maximum number of attempts
 MAX_ATTEMPTS = 5

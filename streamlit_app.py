@@ -336,6 +336,13 @@ cols = ["ph", "pco2", "po2", "hco3 (bicarbonate)-calc.", "base excess", "hematoc
         "chloride", "anion gap", "glucose", "lactate", "Date_clean"]
 
 df_subset = df[[col for col in cols if col in df.columns]]
+
+# Check if 'Date_clean' column exists in subset
+if 'Date_clean' in df_subset.columns:
+    # Convert 'Date_clean' to datetime
+    df_subset['Date_clean'] = pd.to_datetime(df_subset['Date_clean'])
+    df_subset = df_subset.sort_values(by="Date_clean")
+
 st.write(df_subset)
 # st.write(df)
 

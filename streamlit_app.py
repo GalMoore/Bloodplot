@@ -19,7 +19,7 @@ data = []
 filenames = []
 
 # display message explaining what to do if no files uploaded
-if !uploaded_files:
+if not uploaded_files:
     st.write("lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum\
     lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum\
     lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum")

@@ -337,26 +337,26 @@ cols = ["ph", "pco2", "po2", "hco3 (bicarbonate)-calc.", "base excess", "hematoc
         "chloride", "anion gap", "glucose", "lactate", "Date_clean"]
 
 descriptions = {
-    "ph": "pH is a crucial parameter",
-    "pco2": "pCO2 indicates respiratory acidosis/alkalosis",
-    "po2": "pO2 is oxygen pressure levels",
-    "hco3 (bicarbonate)-calc.": "HCO3 is bicarbonate ion concentration",
-    "base excess": "Base excess indicates metabolic acidosis/alkalosis",
-    "hematocrit": "Hematocrit measures proportion of RBCs",
-    "hemoglobin": "Hemoglobin carries oxygen in blood",
-    "saturation, o2": "O2 Saturation refers to SpO2",
-    "oxyhemoglobin": "Oxyhemoglobin is oxygen-bound hemoglobin",
-    "carboxyhemoglobin": "Carboxyhemoglobin is CO-bound hemoglobin",
-    "methemoglobin": "Methemoglobin is oxidized form hemoglobin",
-    "deoxyhemoglobin": "Deoxyhemoglobin lacks bound oxygen molecule",
-    "sodium": "Sodium is vital for osmoregulation",
-    "potassium": "Potassium is crucial for neuromuscular function",
-    "calcium, ionized": "Calcium is essential for cellular processes",
-    "chloride": "Chloride maintains fluid balance, pH",
-    "anion gap": "Anion Gap identifies acid-base disorders",
-    "glucose": "Glucose is primary source of energy",
-    "lactate": "Lactate indicates anaerobic metabolism",
-    "DateTime": "DateTime is the date and time",
+    "ph": "pH is like a thermometer for your body but for acidity and basicity. Lower values mean more acidity, higher values mean less. It’s dangerous if it goes too high or too low. Normal range: **7.35 - 7.45**.",
+    "pco2": "pCO2 is like a marker of how well your lungs remove carbon dioxide. Higher values can indicate your body is having trouble getting rid of it. Normal range: **35 - 45 mmHg**.",
+    "po2": "pO2 measures the pressure of oxygen in your blood. If it's too low, your body might not be getting enough oxygen. Normal range: **75 - 100 mmHg**.",
+    "hco3 (bicarbonate)-calc.": "Bicarbonate helps keep your blood from becoming too acidic or too basic. If it’s too high or low, it can mean there’s an imbalance. Normal range: **22 - 28 mEq/L**.",
+    "base excess": "Base excess measures whether your blood is too acidic (negative values) or too basic (positive values). It’s like the body’s way of saying it needs to balance its pH. Normal range: **-2 to +2 mEq/L**.",
+    "hematocrit": "Hematocrit is like a ratio of your blood that's made up of red blood cells. Higher numbers could mean dehydration or other conditions, lower could mean anemia. Normal range: **Men: 38.8 - 50.0%, Women: 34.9 - 44.5%**.",
+    "hemoglobin": "Hemoglobin is a special stuff in your red blood cells that carries oxygen. If it’s low, you might be tired and breathless. Normal range: **Men: 13.5 - 17.5 g/dL, Women: 12.0 - 15.5 g/dL**.",
+    "saturation, o2": "O2 Saturation is how much of your hemoglobin is carrying oxygen. It’s like your blood’s fuel gauge for oxygen. Normal range: **94 - 100%**.",
+    "oxyhemoglobin": "Oxyhemoglobin is the hemoglobin that's carrying oxygen. The more you have, the more oxygen your body is carrying. Normal range can vary.",
+    "carboxyhemoglobin": "Carboxyhemoglobin is the hemoglobin that's carrying carbon monoxide. High levels can be dangerous. Normal range: **Less than 1.5%**.",
+    "methemoglobin": "Methemoglobin is a form of hemoglobin that can't carry oxygen well. If this number is high, you might have methemoglobinemia. Normal range: **0 - 2%**.",
+    "deoxyhemoglobin": "Deoxyhemoglobin is the hemoglobin that's not carrying oxygen. The lower this number, the more of your hemoglobin is carrying oxygen. Normal range can vary.",
+    "sodium": "Sodium is a type of salt that your body uses to control blood pressure and help your nerves and muscles work correctly. Normal range: **135 - 145 mEq/L**.",
+    "potassium": "Potassium is a mineral that helps your nerves and muscles work right. Too much or too little can cause problems. Normal range: **3.5 - 5.0 mEq/L**.",
+    "calcium, ionized": "Calcium is a mineral your body needs to build strong bones and teeth, and it helps your muscles and nerves work too. Normal range: **4.5 - 5.6 mg/dL**.",
+    "chloride": "Chloride is another type of salt in your blood along with sodium and potassium. It helps balance acidity and alkalinity in your body. Normal range: **96 - 106 mEq/L**.",
+    "anion gap": "Anion Gap is a complex calculation that can help your doctor figure out what’s causing an acid-base imbalance in your body. Normal range: **3 - 11 mEq/L**.",
+    "glucose": "Glucose is the fuel your body uses to produce energy. Too much could mean you have diabetes. Normal range (fasting): **70 - 100 mg/dL**.",
+    "lactate": "Lactate is a product your body makes when it’s short on oxygen. Higher levels could mean a problem with oxygen delivery to your tissues. Normal range: **0.5 - 2.2 mmol/L**.",
+    "DateTime": "This isn't a lab value, but rather when the values were taken. It's important because it can show changes over time."
 }
 
 df_subset = df[[col for col in cols if col in df.columns]]
@@ -406,7 +406,7 @@ if 'df' in locals() and not df.empty:
         # Plot
         if len(df_copy) > 0:  # check if dataframe after dropping NaN values is not empty
             st.markdown(f"**{col}**: {descriptions.get(col, '')}")
-            fig = px.scatter(df_copy, x='DateTime', y=col, title=col)
+            fig = px.scatter(df_copy, x='DateTime', y=col)
             st.plotly_chart(fig)
 else:
     # st.write("No PDF loaded. Please load a PDF file.")

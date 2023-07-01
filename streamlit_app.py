@@ -213,8 +213,7 @@ for index, row in df.iterrows():
 if 'df' in locals() and not df.empty:
     # Check if 'Messages' column exists in the DataFrame
     if 'Messages' in df.columns:
-        st.success('Extract the lab result values using gpt into a dict structure in df', icon="✅")
-
+        st.success('Extracted the lab result values using gpt into a string in df', icon="✅")
 
 ## From the gpt response - extract the dict of values
 def extract_values(message_str):
@@ -268,6 +267,11 @@ df = df.join(df['Messages'].apply(extract_values).apply(pd.Series), rsuffix='_ex
 # DEBUG 3 #
 # st.write(df)
 
+# check if 'df' exists and is not empty
+if 'df' in locals() and not df.empty:
+    # Check if any of the columns exist in the DataFrame
+    if any(col in df.columns for col in cols):
+        st.success('Extracted the dict of lab results into respective cols in df', icon="✅")
 
 # Define the maximum number of attempts
 MAX_ATTEMPTS = 5

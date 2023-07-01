@@ -74,7 +74,7 @@ df['Text'] = df['Text'].str.lower()
 if 'df' in locals() and not df.empty:
     # Check if 'Text' column exists in the DataFrame
     if 'Text' in df.columns:
-        st.success('Extracted dictionary of lab results', icon="✅")
+        st.success('Extracted text from pdfs of lab results', icon="✅")
 
 
 # Set the OpenAI API key from Streamlit secrets

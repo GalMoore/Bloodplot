@@ -37,23 +37,16 @@ if uploaded_files:
         # Append the filename to the filenames list
         filenames.append(file.name)
 
-try:
-    # Create a DataFrame
-    df = pd.DataFrame(data, columns=['Text'], index=filenames)
-    
-    # Convert text to lowercase
-    df['Text'] = df['Text'].str.lower()
+# Create a DataFrame
+df = pd.DataFrame(data, columns=['Text'], index=filenames)
 
-except Exception as e:
-    # This line will display the initial dataframe on the Streamlit UI. 
-    # The dataframe contains the text extracted from uploaded PDF documents. 
-    st.write(df)
-    st.error(f"An error occurred: {e}")
-else:
-    st.success("Stage 1 completed successfully without errors.")
-    
+# Convert text to lowercase
+df['Text'] = df['Text'].str.lower()
+
+
 ##############################################################
 ####### print the text, extracted from pdf, into a df ########
+# DEBUG 1 #
 # st.write(df)  # This line will display the initial dataframe on the Streamlit UI. 
 # The dataframe contains the text extracted from uploaded PDF documents. 
 
@@ -147,7 +140,6 @@ df['Messages'] = pd.Series(dtype=object)
 
 
 ### ONE SHOT LEARNING 
-
 # Iterate through the DataFrame
 for index, row in df.iterrows():
     print("collecting text from document in df and sending query to chatgpt ", index)
@@ -187,7 +179,8 @@ for index, row in df.iterrows():
 # This line will display the updated dataframe on the 
 # Streamlit UI after the chat responses are stored in a new 'Messages' column.
 # The 'Messages' column contains dictionaries of extracted lab results from each document.
-st.write(df) 
+# DEBUG 2#
+# st.write(df) 
 
 
 ## From the gpt response - extract the dict of values
@@ -239,7 +232,8 @@ df = df.join(df['Messages'].apply(extract_values).apply(pd.Series), rsuffix='_ex
 
 # This line will display the updated dataframe on the Streamlit UI after the values 
 # from the 'Messages' column have been extracted into their own respective columns. 
-st.write(df)
+# DEBUG 3 #
+# st.write(df)
 
 
 # Define the maximum number of attempts

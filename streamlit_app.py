@@ -21,7 +21,7 @@ filenames = []
 # display message explaining what to do if no files uploaded
 if not uploaded_files:
 
-   st.markdown("**Welcome to the :red[Medical Documents Analyzer**], your friendly tool for \
+   st.markdown("**Welcome to the :red[Medical Documents Analyzer]**, your friendly tool for \
    deciphering medical readings!")
    
    my_intro_text = "We know medical jargon can feel like trying to read alien \

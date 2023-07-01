@@ -110,7 +110,7 @@ if len(df) > 0 and "Text" in df.columns and len(df["Text"]) > 0:
     #     print(line)
     #     st.write(line)
 else:
-    st.write("No document found.")
+    # st.write("No document found.")
     print("checking that this reaches log in manage app. ")
 
 example_dict_outcome = {

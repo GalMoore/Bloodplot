@@ -343,7 +343,7 @@ if 'Date_clean' in df_subset.columns:
     df_subset['Date_clean'] = pd.to_datetime(df_subset['Date_clean'])
     df_subset = df_subset.sort_values(by="Date_clean")
 
-st.dataframe(data=df_subset, width=20, height=10)
+st.dataframe(data=df_subset, width=40, height=20)
 # st.write(df_subset)
 # st.write(df)
 

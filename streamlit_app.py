@@ -342,8 +342,9 @@ if 'Date_clean' in df_subset.columns:
     # Convert 'Date_clean' to datetime
     df_subset['Date_clean'] = pd.to_datetime(df_subset['Date_clean'])
     df_subset = df_subset.sort_values(by="Date_clean")
-    
-st.write(df_subset)
+
+st.dataframe(data=None, width=20, height=10)
+# st.write(df_subset)
 # st.write(df)
 
 import matplotlib.pyplot as plt

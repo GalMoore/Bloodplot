@@ -336,6 +336,29 @@ cols = ["ph", "pco2", "po2", "hco3 (bicarbonate)-calc.", "base excess", "hematoc
         "methemoglobin", "deoxyhemoglobin", "sodium", "potassium", "calcium, ionized", 
         "chloride", "anion gap", "glucose", "lactate", "Date_clean"]
 
+descriptions = {
+    "ph": "pH is a crucial parameter",
+    "pco2": "pCO2 indicates respiratory acidosis/alkalosis",
+    "po2": "pO2 is oxygen pressure levels",
+    "hco3 (bicarbonate)-calc.": "HCO3 is bicarbonate ion concentration",
+    "base excess": "Base excess indicates metabolic acidosis/alkalosis",
+    "hematocrit": "Hematocrit measures proportion of RBCs",
+    "hemoglobin": "Hemoglobin carries oxygen in blood",
+    "saturation, o2": "O2 Saturation refers to SpO2",
+    "oxyhemoglobin": "Oxyhemoglobin is oxygen-bound hemoglobin",
+    "carboxyhemoglobin": "Carboxyhemoglobin is CO-bound hemoglobin",
+    "methemoglobin": "Methemoglobin is oxidized form hemoglobin",
+    "deoxyhemoglobin": "Deoxyhemoglobin lacks bound oxygen molecule",
+    "sodium": "Sodium is vital for osmoregulation",
+    "potassium": "Potassium is crucial for neuromuscular function",
+    "calcium, ionized": "Calcium is essential for cellular processes",
+    "chloride": "Chloride maintains fluid balance, pH",
+    "anion gap": "Anion Gap identifies acid-base disorders",
+    "glucose": "Glucose is primary source of energy",
+    "lactate": "Lactate indicates anaerobic metabolism",
+    "DateTime": "DateTime is the date and time",
+}
+
 df_subset = df[[col for col in cols if col in df.columns]]
 
 # Check if 'Date_clean' column exists in subset
@@ -382,13 +405,37 @@ if 'df' in locals() and not df.empty:
 
         # Plot
         if len(df_copy) > 0:  # check if dataframe after dropping NaN values is not empty
+            st.markdown(f"**{col}**: {descriptions.get(col, '')}")
             fig = px.scatter(df_copy, x='DateTime', y=col, title=col)
             st.plotly_chart(fig)
 else:
     # st.write("No PDF loaded. Please load a PDF file.")
     print("No PDF loaded. Please load a PDF file.")
     
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # # check if 'df' exists and is not empty
 # if 'df' in locals() and not df.empty:
 #     # convert 'Date_clean' column to datetime

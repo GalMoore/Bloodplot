@@ -201,6 +201,7 @@ for index, row in df.iterrows():
 # The 'Messages' column contains dictionaries of extracted lab results from each document.
 # DEBUG 2#
 # st.write(df) 
+st.success('Extracted dictionary of lab results', icon="✅")
 
 
 ## From the gpt response - extract the dict of values

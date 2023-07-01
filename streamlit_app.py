@@ -171,7 +171,8 @@ for index, row in df.iterrows():
 
     # Convert dictionary into a string and update the corresponding column in the DataFrame
     df.at[index, 'Messages'] = json.dumps(messages_dict)
-
+    
+##############################################################
 # This line will display the updated dataframe on the 
 # Streamlit UI after the chat responses are stored in a new 'Messages' column.
 # The 'Messages' column contains dictionaries of extracted lab results from each document.
@@ -217,6 +218,7 @@ def extract_values(message_str):
 df = df.join(df['Messages'].apply(extract_values).apply(pd.Series), rsuffix='_extracted')
 # df = df.join(df['Messages'].apply(extract_values).apply(pd.Series))
 
+##############################################################
 # This line will display the updated dataframe on the Streamlit UI after the values 
 # from the 'Messages' column have been extracted into their own respective columns. 
 # DEBUG 3 #

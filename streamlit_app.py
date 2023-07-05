@@ -184,7 +184,8 @@ for index, row in df.iterrows():
 if 'df' in locals() and not df.empty:
     # Check if 'Messages' column exists in the DataFrame
     if 'Messages' in df.columns:
-        st.success('Extracted the lab values using gpt into a string in df', icon="✅")
+        # st.success('Extracted the lab values using gpt into a string in df', icon="✅")
+        st.markdown('<small><p style="color:green;">✅ Extracted the lab values using gpt into a string in df</p></small>', unsafe_allow_html=True)
 
 ## From the gpt response - extract the dict of values
 def extract_values(message_str):
@@ -239,7 +240,9 @@ if 'df' in locals() and not df.empty:
     }
     # Check if any of the columns exist in the DataFrame
     if any(col in df.columns for col in cols):
-        st.success('Extracted the dict of lab results into respective cols in df', icon="✅")
+        # st.success('Extracted the dict of lab results into respective cols in df', icon="✅")
+        st.markdown('<small><p style="color:green;">✅ Extracted the dict of lab results into respective cols in df</p></small>', unsafe_allow_html=True)
+
 ############################################################################################
 
 # Define the maximum number of attempts

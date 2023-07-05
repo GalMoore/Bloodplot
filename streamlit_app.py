@@ -13,13 +13,14 @@ st.title("BloodPlot: see your blood values over time")
 # st.divider()
 
 # Add a file uploader to the sidebar for the user to upload up to 10 documents
-uploaded_files = st.sidebar.file_uploader("Upload your documents here", accept_multiple_files=True, type=['pdf'])
+# uploaded_files = st.sidebar.file_uploader("Upload your documents here", accept_multiple_files=True, type=['pdf'])
+uploaded_files = st.sidebar.file_uploader(accept_multiple_files=True, type=['pdf'])
 
 # Initialize an empty list to store the extracted text from the uploaded files
 data = []
 filenames = []
 
-st.markdown("**Welcome to the Medical Documents Analyzer**, your go-to tool for plotting Blood Gas work values from PDFs!")
+st.markdown("**Welcome to this Medical Documents Analyzer**, a tool to help you see  plotting Blood Gas work values from PDFs!")
 
 my_intro_text = "Medical jargon can seem cryptic, but we simplify it. Upload up to 10 PDFs \
 on the left sidebar. As we decipher the medical text, you'll see your files and corresponding metrics plotted. \

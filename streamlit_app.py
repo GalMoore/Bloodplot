@@ -9,7 +9,7 @@ import plotly.express as px
 import matplotlib.pyplot as plt
 
 # Set the title of the Streamlit application
-st.title(":hospital: :blue[Bloodplot] :hospital: ")
+st.title(":hospital: Bloodplot :hospital: ")
 # st.title(":: :hospital: :drop_of_blood:")
 # st.divider()
 
@@ -24,9 +24,9 @@ filenames = []
 st.markdown("**Welcome to Bloodplot**, The quickest and easiest tool to plot Blood Gas work values, over time, from your PDF documents. \
 Giving you access to important insights whenever and whenever you need them.")
 
-my_intro_text = "Medical jargon can seem cryptic, but we simplify it. Upload up to 10 PDFs \
-on the left sidebar. As we decipher the medical text, you'll see your files and corresponding metrics plotted. \
-Our aim? Making medical reports accessible without a medicine degree. After all, navigating healthcare should be simpler!"
+my_intro_text = "Medical jargon can be cryptic, but we simplify it. Upload your PDFs \
+on the left sidebar. We use GPT to decipher the medical text and create plots (graphs) of the values in the blood testes over time. \
+You'll see your files and corresponding metrics plotted below. It takes about 10 seconds per page - so bear with us whilst we do the number crunching! \
 
 st.markdown(f'<div style="text-align: justify;">{my_intro_text}</div>', unsafe_allow_html=True)
 st.markdown("\n")

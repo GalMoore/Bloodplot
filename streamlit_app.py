@@ -24,8 +24,8 @@ filenames = []
 st.markdown("**Welcome to Bloodplot**, The quickest and easiest tool to plot Blood Gas work values, over time, from your PDF documents. \
 Giving you access to important insights whenever and whenever you need them.")
 
-my_intro_text = "Medical jargon can be cryptic, but we simplify it by using GPT to decipher the medical text and create plots (graphs) of the values in the blood testes over time\
-with simple explanations of what each value is, where it 'should' be - and what you should look out for. \
+my_intro_text = "Medical jargon can be cryptic, but we simplify it by using GPT to decipher the medical text and create plots (graphs) of the values in the blood tests over time \
+with simple explanations of what each value is, the 'normal' range, and what you should look out for. \
 You'll see your files and corresponding metrics plotted below. It takes about 10 seconds per page - so bear with us whilst we do the number crunching!" \
 
 st.markdown(f'<div style="text-align: justify;">{my_intro_text}</div>', unsafe_allow_html=True)

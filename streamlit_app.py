@@ -9,7 +9,9 @@ import plotly.express as px
 import matplotlib.pyplot as plt
 
 # Set the title of the Streamlit application
-st.title("BloodPlot: see your blood values over time")
+st.title(":blue[BloodPlot]")
+st.title("Insights when you need them")
+st.title(":drop_of_blood: :wavy_dash: :hospital:")
 # st.divider()
 
 # Add a file uploader to the sidebar for the user to upload up to 10 documents

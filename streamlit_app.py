@@ -143,20 +143,19 @@ example_dict_outcome = {
 # Initialize a new column 'Messages' with dtype object
 df['Messages'] = pd.Series(dtype=object)
 
-# CHECK WORD COUNT FOR EACH DOCUMENT
-df['word_count'] = df['Text'].apply(lambda x: len(str(x).split()))
 
-encoding = tiktoken.encoding_for_model('gpt-3.5-turbo')
-
-### CHECK HOW MANY TOKENS IN THE LONGEST TEXT AND PRINT / write to screen 
-def num_tokens_from_string(string: str, encoding_name: str) -> int:
-    """Returns the number of tokens in a text string."""
-    encoding = tiktoken.encoding_for_model('gpt-3.5-turbo')
-    num_tokens = len(encoding.encode(string))
-    return num_tokens
-df['token_count'] = df['Text'].apply(lambda x: num_tokens_from_string(x, encoding))
-
-st.write(df[["word_count","token_count"]])
+# ################# FOR DEBUG OF TOKEN LENGTH #############
+# ### CHECK WORD COUNT AND HOW MANY TOKENS IN THE LONGEST TEXT AND  write to screen 
+# # CHECK WORD COUNT FOR EACH DOCUMENT
+# df['word_count'] = df['Text'].apply(lambda x: len(str(x).split()))
+# encoding = tiktoken.encoding_for_model('gpt-3.5-turbo')
+# def num_tokens_from_string(string: str, encoding_name: str) -> int:
+#     """Returns the number of tokens in a text string."""
+#     encoding = tiktoken.encoding_for_model('gpt-3.5-turbo')
+#     num_tokens = len(encoding.encode(string))
+#     return num_tokens
+# df['token_count'] = df['Text'].apply(lambda x: num_tokens_from_string(x, encoding))
+# st.write(df[["word_count","token_count"]])
 
 
 

@@ -279,7 +279,7 @@ for index, row in df.iterrows():
         try:
             # Ask ChatGPT for dict of results for each document
             chat_response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
+                model="gpt-3.5-turbo-16k",
                 messages=[
                     {"role": "system", "content": f"You are an israeli nurse in ICU with 20 years experience. When I give you a text string that includes a lab report like this: {example_document}, return a string with the date and time like this: {example_date}"},
                     {"role": "user", \

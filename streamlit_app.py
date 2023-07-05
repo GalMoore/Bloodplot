@@ -156,7 +156,7 @@ def num_tokens_from_string(string: str, encoding_name: str) -> int:
     return num_tokens
 df['token_count'] = df['Text'].apply(lambda x: num_tokens_from_string(x, encoding))
 
-st.write(df)
+st.write(df[["word_count","token_count"]])
 
 
 

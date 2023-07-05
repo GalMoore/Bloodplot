@@ -22,7 +22,7 @@ data = []
 filenames = []
 
 st.markdown("**Welcome to Bloodplot**, The quickest and easiest tool to plot Blood Gas work values, over time, from your PDF documents. \
-Giving you access to important insights whenever and whenever you need them")
+Giving you access to important insights whenever and whenever you need them.")
 
 my_intro_text = "Medical jargon can seem cryptic, but we simplify it. Upload up to 10 PDFs \
 on the left sidebar. As we decipher the medical text, you'll see your files and corresponding metrics plotted. \

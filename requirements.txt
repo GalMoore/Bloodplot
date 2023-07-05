@@ -4,3 +4,4 @@ PyPDF2==2.12.1
 pandas==1.5.3
 matplotlib
 plotly
+tiktoken

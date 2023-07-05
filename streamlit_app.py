@@ -14,7 +14,7 @@ st.title("BloodPlot: see your blood values over time")
 
 # Add a file uploader to the sidebar for the user to upload up to 10 documents
 # uploaded_files = st.sidebar.file_uploader("Upload your documents here", accept_multiple_files=True, type=['pdf'])
-uploaded_files = st.sidebar.file_uploader(accept_multiple_files=True, type=['pdf'])
+uploaded_files = st.sidebar.file_uploader("",accept_multiple_files=True, type=['pdf'])
 
 # Initialize an empty list to store the extracted text from the uploaded files
 data = []

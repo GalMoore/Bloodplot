@@ -10,7 +10,6 @@ import matplotlib.pyplot as plt
 
 # Set the title of the Streamlit application
 st.title(":blue[BloodPlot]")
-st.title("Insights when you need them")
 st.title(":drop_of_blood: :wavy_dash: :hospital:")
 # st.divider()
 
@@ -22,7 +21,8 @@ uploaded_files = st.sidebar.file_uploader("",accept_multiple_files=True, type=['
 data = []
 filenames = []
 
-st.markdown("**Welcome to this Medical Documents Analyzer**, a tool to help you see  plotting Blood Gas work values from PDFs!")
+st.markdown("**Welcome to this Medical Documents Analyzer**, a tool to help you plot Blood Gas work values from PDFs. \
+Giving you access to important insights whenever and whenever you need them")
 
 my_intro_text = "Medical jargon can seem cryptic, but we simplify it. Upload up to 10 PDFs \
 on the left sidebar. As we decipher the medical text, you'll see your files and corresponding metrics plotted. \

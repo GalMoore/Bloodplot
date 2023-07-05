@@ -26,10 +26,10 @@ Giving you access to important insights whenever and whenever you need them.")
 
 my_intro_text = "Medical jargon can be cryptic, but we simplify it. Upload your PDFs \
 on the left sidebar. We use GPT to decipher the medical text and create plots (graphs) of the values in the blood testes over time. \
-You'll see your files and corresponding metrics plotted below. It takes about 10 seconds per page - so bear with us whilst we do the number crunching! \
+You'll see your files and corresponding metrics plotted below. It takes about 10 seconds per page - so bear with us whilst we do the number crunching!" \
 
 st.markdown(f'<div style="text-align: justify;">{my_intro_text}</div>', unsafe_allow_html=True)
-st.markdown("\n")
+st.markdown("\n\n")
 st.markdown("**:violet[Upload your PDF files on the left sidebar]** and watch the graphs populate below.")
 
 # Loop over each uploaded file

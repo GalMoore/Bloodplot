@@ -9,7 +9,7 @@ import plotly.express as px
 import matplotlib.pyplot as plt
 
 # Set the title of the Streamlit application
-st.title(":drop_of_blood: :orange[Plot]")
+st.title(":drop_of_blood: :blue[Bloodplot] :drop_of_blood: ")
 # st.title(":: :hospital:")
 # st.divider()
 
@@ -21,7 +21,7 @@ uploaded_files = st.sidebar.file_uploader("",accept_multiple_files=True, type=['
 data = []
 filenames = []
 
-st.markdown("**Welcome to this Medical Documents Analyzer**, a tool to help you plot Blood Gas work values from PDFs. \
+st.markdown("**Welcome to Bloodplot**, The quickest and easiest tool to plot Blood Gas work values, over time, from your PDF documents. \
 Giving you access to important insights whenever and whenever you need them")
 
 my_intro_text = "Medical jargon can seem cryptic, but we simplify it. Upload up to 10 PDFs \

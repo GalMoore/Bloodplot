@@ -9,8 +9,8 @@ import plotly.express as px
 import matplotlib.pyplot as plt
 
 # Set the title of the Streamlit application
-st.title(":blue[BloodPlot]")
-st.title(":drop_of_blood: :wavy_dash: :hospital:")
+st.title(":drop_of_blood: :orange[Plot]")
+# st.title(":: :hospital:")
 # st.divider()
 
 # Add a file uploader to the sidebar for the user to upload up to 10 documents

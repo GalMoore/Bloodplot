@@ -5,6 +5,7 @@ import pandas as pd
 from io import BytesIO
 import json
 import time
+import tiktoken
 import plotly.express as px
 import matplotlib.pyplot as plt
 

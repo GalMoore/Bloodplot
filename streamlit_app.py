@@ -28,7 +28,7 @@ Our aim? Making medical reports accessible without a medicine degree. After all,
 
 st.markdown(f'<div style="text-align: justify;">{my_intro_text}</div>', unsafe_allow_html=True)
 st.markdown("\n")
-st.markdown("**:pink[Upload your PDF files on the left sidebar]** and watch the graphs populate below.")
+st.markdown("**:violet[Upload your PDF files on the left sidebar]** and watch the graphs populate below.")
 
 # Loop over each uploaded file
 if uploaded_files:
@@ -63,8 +63,8 @@ df['Text'] = df['Text'].str.lower()
 if 'df' in locals() and not df.empty:
     # Check if 'Text' column exists in the DataFrame
     if 'Text' in df.columns:
-        st.success('Extracted text from pdfs of lab results', icon="✅")
-
+        # st.success('Extracted text from pdfs of lab results', icon="✅")
+        st.markdown('<small><p style="color:green;">✅ Extracted text from pdfs of lab results</p></small>', unsafe_allow_html=True)
 # Set the OpenAI API key from Streamlit secrets
 openai.api_key = st.secrets["openai_password"]
 

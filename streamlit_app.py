@@ -382,58 +382,72 @@ if 'Date_clean' in df_final.columns:
     df_final['Date_clean'] = pd.to_datetime(df_final['Date_clean'], format="%yyyy-%mm-%dd %H:%M")
 blood_test_ranges_flat = {k.lower(): v for k, v in blood_test_ranges_flat.items()}
 
-# Only consider the columns in the cols list
-for col in cols[:-1]:  # Exclude 'Date_clean'
-    # If the column is in the DataFrame
-    if col in df_final.columns:
-        # Convert empty strings to NaN
-        df_final[col] = df_final[col].apply(lambda x: np.nan if str(x).strip() == '' else x)
-
-        # Drop the rows with missing or NaN values
-        df_subset = df_final[[col, 'Date_clean']].dropna()
-
-        # Sort df_subset by 'Date_clean'
-        df_subset = df_subset.sort_values('Date_clean')
-
-        # If the subset DataFrame is not empty
-        if not df_subset.empty:
-            # Fetch and print description
-            description = descriptions.get(col, 'No description available.')
-            print(f"\n{col}:\n{description}\n")
-            # Create a new figure
-            plt.figure(figsize=(10, 5))
-            # Scatter plot column vs. Date_clean
-            plt.scatter(df_subset['Date_clean'], df_subset[col])
-            # Plot a thin light blue line connecting the points
-            plt.plot(df_subset['Date_clean'], df_subset[col], color='lightblue', linewidth=1)
-            # Set the title and labels
-            plt.title(f'Trend of {col} over time')
-            plt.xlabel('Date')
-            plt.ylabel(col)
-
-            # If there are reference ranges for this test
-            if blood_test_ranges_flat.get(col):
-                lower_limit, upper_limit = blood_test_ranges_flat[col]
-                # Add horizontal lines for the reference ranges
-                plt.axhline(y=lower_limit, color='r', linestyle=':', linewidth=0.5)
-                plt.axhline(y=upper_limit, color='r', linestyle=':', linewidth=0.5)
-
-                # Extend the y-axis limits by 20% on either side of the larger of the range and the actual data
-                data_min, data_max = df_subset[col].min(), df_subset[col].max()
-                ylim_lower = min(data_min, lower_limit)*0.8
-                ylim_upper = max(data_max, upper_limit)*1.2
-                plt.ylim([ylim_lower, ylim_upper])
-
-                # Add texts above the reference lines
-                plt.text(df_subset['Date_clean'].min(), lower_limit + 0.01*(ylim_upper - ylim_lower),
-                         "normal range (lower limit)", color='black', fontsize=8, va='bottom')
-                plt.text(df_subset['Date_clean'].min(), upper_limit + 0.01*(ylim_upper - ylim_lower),
-                         "normal range (upper limit)", color='black', fontsize=8, va='bottom')
-
-            # Show the plot
-            plt.show()
 
 
+
+if 'df_final' in locals() and not df_final.empty:
+        
+    # Only consider the columns in the cols list
+    for col in cols[:-1]:  # Exclude 'Date_clean'
+        # If the column is in the DataFrame
+        if col in df_final.columns:
+            # Convert empty strings to NaN
+            df_final[col] = df_final[col].apply(lambda x: np.nan if str(x).strip() == '' else x)
+    
+            # Drop the rows with missing or NaN values
+            df_subset = df_final[[col, 'Date_clean']].dropna()
+    
+            # Sort df_subset by 'Date_clean'
+            df_subset = df_subset.sort_values('Date_clean')
+    
+            # If the subset DataFrame is not empty
+            if not df_subset.empty:
+                # Fetch and print description
+                description = descriptions.get(col, 'No description available.')
+                print(f"\n{col}:\n{description}\n")
+                # Create a new figure
+                plt.figure(figsize=(10, 5))
+                # Scatter plot column vs. Date_clean
+                plt.scatter(df_subset['Date_clean'], df_subset[col])
+                # Plot a thin light blue line connecting the points
+                plt.plot(df_subset['Date_clean'], df_subset[col], color='lightblue', linewidth=1)
+                # Set the title and labels
+                plt.title(f'Trend of {col} over time')
+                plt.xlabel('Date')
+                plt.ylabel(col)
+    
+                # If there are reference ranges for this test
+                if blood_test_ranges_flat.get(col):
+                    lower_limit, upper_limit = blood_test_ranges_flat[col]
+                    # Add horizontal lines for the reference ranges
+                    plt.axhline(y=lower_limit, color='r', linestyle=':', linewidth=0.5)
+                    plt.axhline(y=upper_limit, color='r', linestyle=':', linewidth=0.5)
+    
+                    # Extend the y-axis limits by 20% on either side of the larger of the range and the actual data
+                    data_min, data_max = df_subset[col].min(), df_subset[col].max()
+                    ylim_lower = min(data_min, lower_limit)*0.8
+                    ylim_upper = max(data_max, upper_limit)*1.2
+                    plt.ylim([ylim_lower, ylim_upper])
+    
+                    # Add texts above the reference lines
+                    plt.text(df_subset['Date_clean'].min(), lower_limit + 0.01*(ylim_upper - ylim_lower),
+                             "normal range (lower limit)", color='black', fontsize=8, va='bottom')
+                    plt.text(df_subset['Date_clean'].min(), upper_limit + 0.01*(ylim_upper - ylim_lower),
+                             "normal range (upper limit)", color='black', fontsize=8, va='bottom')
+    
+                # # Show the plot
+                # plt.show()
+
+        # Plot
+        if len(df_subset) > 0:  # check if dataframe after dropping NaN values is not empty
+            st.markdown(f"**{col}**: {descriptions.get(col, '')}")
+            fig = px.scatter(df_subset, x='DateTime', y=col)
+            st.plotly_chart(fig)
+            st.divider()
+
+else:
+    # st.write("No PDF loaded. Please load a PDF file.")
+    print("No PDF loaded. Please load a PDF file.")
 
 
 

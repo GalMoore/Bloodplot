@@ -8,6 +8,7 @@ import time
 import tiktoken
 import plotly.express as px
 import matplotlib.pyplot as plt
+import re
 
 # Set the title of the Streamlit application
 st.title(":hospital: Bloodplot :hospital: ")

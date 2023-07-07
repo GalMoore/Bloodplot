@@ -405,8 +405,9 @@ if 'df_final' in locals() and not df_final.empty:
                 # Fetch and print description
                 description = descriptions.get(col, 'No description available.')
                 # print(f"\n{col}:\n{description}\n")
-                st.write(f"\n{col}:\n{description}\n")
-
+                # st.write(f"\n{col}:\n{description}\n")
+                st.markdown(f"**{col}**: {descriptions}")
+                
                 # Create a new figure
                 plt.figure(figsize=(10, 5))
                 # Scatter plot column vs. Date_clean

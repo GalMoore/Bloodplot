@@ -435,15 +435,15 @@ if 'df_final' in locals() and not df_final.empty:
                     plt.text(df_subset['Date_clean'].min(), upper_limit + 0.01*(ylim_upper - ylim_lower),
                              "normal range (upper limit)", color='black', fontsize=8, va='bottom')
     
-                # # Show the plot
-                # plt.show()
+                # Show the plot
+                st.pyplot(plt)
 
-        # Plot
-        if len(df_subset) > 0:  # check if dataframe after dropping NaN values is not empty
-            st.markdown(f"**{col}**: {descriptions.get(col, '')}")
-            fig = px.scatter(df_subset, x='DateTime', y=col)
-            st.plotly_chart(fig)
-            st.divider()
+        # # Plot
+        # if len(df_subset) > 0:  # check if dataframe after dropping NaN values is not empty
+        #     st.markdown(f"**{col}**: {descriptions.get(col, '')}")
+        #     fig = px.scatter(df_subset, x='DateTime', y=col)
+        #     st.plotly_chart(fig)
+        #     st.divider()
 
 else:
     # st.write("No PDF loaded. Please load a PDF file.")

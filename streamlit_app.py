@@ -377,8 +377,8 @@ else:
 #################################################
 
 ############### PLOPT THE GRAPHS #############
-
-df_final['Date_clean'] = pd.to_datetime(df_final['Date_clean'], format="%yyyy-%mm-%dd %H:%M")
+if 'Date_clean' in df_final.columns:
+    df_final['Date_clean'] = pd.to_datetime(df_final['Date_clean'], format="%yyyy-%mm-%dd %H:%M")
 blood_test_ranges_flat = {k.lower(): v for k, v in blood_test_ranges_flat.items()}
 
 # Only consider the columns in the cols list

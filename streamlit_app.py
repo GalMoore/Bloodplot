@@ -69,6 +69,7 @@ if 'df' in locals() and not df.empty:
     if 'Text' in df.columns:
         # st.success('Extracted text from pdfs of lab results', icon="✅")
         st.markdown('<small><p style="color:green;">✅ Extracted text from pdfs of lab results</p></small>', unsafe_allow_html=True)
+        st.markdown('<small><p style="color:gray;">We are processing your data... Allow up to 10 seconds per page (i.e you'll wait 40 seconds for 4 pages to run</p></small>', unsafe_allow_html=True)
 
 # Set the OpenAI API key from Streamlit secrets
 openai.api_key = st.secrets["openai_password"]

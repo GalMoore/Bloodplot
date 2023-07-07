@@ -370,8 +370,11 @@ cols = ["ph", "pco2", "po2", "hco3 (bicarbonate)-calc.", "base excess", "hematoc
 ############## SHOW ON GUI DF #################
 df_subset_temp = df_final[[col for col in cols if col in df_final.columns]]
 if not df_subset_temp.empty:
+    
     st.divider()
     st.subheader('Here is a summary of your pdf files in a dataframe')
+    df_subset_temp['Date_clean'] = pd.to_datetime(df_subset_temp['Date_clean'], format="%yyyy-%mm-%dd %H:%M")
+    df_subset_temp = df_subset_temp.sort_values(by="Date_clean")
     st.write(df_subset_temp)
 else:
     # st.write("No data to display.Browse files and upload multiple pdf files")
@@ -382,7 +385,6 @@ else:
 if 'Date_clean' in df_final.columns:
     df_final['Date_clean'] = pd.to_datetime(df_final['Date_clean'], format="%yyyy-%mm-%dd %H:%M")
 blood_test_ranges_flat = {k.lower(): v for k, v in blood_test_ranges_flat.items()}
-
 
 
 

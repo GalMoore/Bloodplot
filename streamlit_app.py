@@ -366,11 +366,11 @@ cols = ["ph", "pco2", "po2", "hco3 (bicarbonate)-calc.", "base excess", "hematoc
 
 
 ############## SHOW ON GUI DF #################
-df_subset = df[[col for col in cols if col in df_final.columns]]
-if not df_subset.empty:
+df_subset_temp = df_final[[col for col in cols if col in df_final.columns]]
+if not df_subset_temp.empty:
     st.divider()
     st.subheader('Here is a summary of your pdf files in a dataframe')
-    st.write(df_subset)
+    st.write(df_subset_temp)
 else:
     # st.write("No data to display.Browse files and upload multiple pdf files")
     print("No data to display. Browse and upload pdf files")
@@ -380,6 +380,7 @@ else:
 
 df_final['Date_clean'] = pd.to_datetime(df_final['Date_clean'], format="%yyyy-%mm-%dd %H:%M")
 blood_test_ranges_flat = {k.lower(): v for k, v in blood_test_ranges_flat.items()}
+
 # Only consider the columns in the cols list
 for col in cols[:-1]:  # Exclude 'Date_clean'
     # If the column is in the DataFrame
@@ -398,16 +399,12 @@ for col in cols[:-1]:  # Exclude 'Date_clean'
             # Fetch and print description
             description = descriptions.get(col, 'No description available.')
             print(f"\n{col}:\n{description}\n")
-
             # Create a new figure
             plt.figure(figsize=(10, 5))
-
             # Scatter plot column vs. Date_clean
             plt.scatter(df_subset['Date_clean'], df_subset[col])
-
             # Plot a thin light blue line connecting the points
             plt.plot(df_subset['Date_clean'], df_subset[col], color='lightblue', linewidth=1)
-
             # Set the title and labels
             plt.title(f'Trend of {col} over time')
             plt.xlabel('Date')

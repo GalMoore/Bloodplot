@@ -21,8 +21,8 @@ st.title(":hospital: LVD_ONES :hospital: ")
 # with simple explanations of what each value is, the 'normal' range, and what you should look out for. \
 # You'll see your files and corresponding metrics plotted below. It takes about 10 seconds per page - so bear with us whilst we do the number crunching!" \
 
-st.markdown(f'<div style="text-align: justify;">{my_intro_text}</div>', unsafe_allow_html=True)
-st.markdown("\n\n")
+# st.markdown(f'<div style="text-align: justify;">{my_intro_text}</div>', unsafe_allow_html=True)
+# st.markdown("\n\n")
 st.markdown("**:violet[Upload your PDF files on the left sidebar]** and watch the graphs populate below.")
 
 # Set the OpenAI API key from Streamlit secrets

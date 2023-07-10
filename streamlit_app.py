@@ -14,12 +14,12 @@ import re
 st.title(":hospital: LVD_ONES :hospital: ")
 # st.divider()
 
-st.markdown("**Welcome to Bloodplot**, The quickest and easiest tool to plot Blood Gas work values, over time, from your PDF documents. \
-Giving you access to important insights whenever and whenever you need them.")
+# st.markdown("**Welcome to Bloodplot**, The quickest and easiest tool to plot Blood Gas work values, over time, from your PDF documents. \
+# Giving you access to important insights whenever and whenever you need them.")
 
-my_intro_text = "Medical jargon can be cryptic, but we simplify it by using GPT to decipher the medical text and create plots (graphs) of the values in the blood tests over time \
-with simple explanations of what each value is, the 'normal' range, and what you should look out for. \
-You'll see your files and corresponding metrics plotted below. It takes about 10 seconds per page - so bear with us whilst we do the number crunching!" \
+# my_intro_text = "Medical jargon can be cryptic, but we simplify it by using GPT to decipher the medical text and create plots (graphs) of the values in the blood tests over time \
+# with simple explanations of what each value is, the 'normal' range, and what you should look out for. \
+# You'll see your files and corresponding metrics plotted below. It takes about 10 seconds per page - so bear with us whilst we do the number crunching!" \
 
 st.markdown(f'<div style="text-align: justify;">{my_intro_text}</div>', unsafe_allow_html=True)
 st.markdown("\n\n")

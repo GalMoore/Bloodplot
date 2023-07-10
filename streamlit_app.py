@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 import re
 
 # Set the title of the Streamlit application
-st.title(":hospital: Bloodplot :hospital: ")
+st.title(":hospital: LVD_ONES :hospital: ")
 # st.title(":: :hospital: :drop_of_blood:")
 # st.divider()
 

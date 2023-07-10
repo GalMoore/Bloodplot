@@ -18,7 +18,7 @@ st.markdown("**:violet[Upload your PDF files on the left sidebar]** and watch th
 openai.api_key = st.secrets["openai_password"]
 
 #####################################################
-################3 CHAT ##############################
+################ CHAT ##############################
 # Initialize the session state for the OpenAI model if it doesn't exist, with a default value of "gpt-3.5-turbo-16k"
 if "openai_model" not in st.session_state:
     st.session_state["openai_model"] =  "gpt-3.5-turbo-16k" # "gpt-4"
@@ -65,18 +65,18 @@ if prompt := st.chat_input("What is up?"):
 # Add a file uploader to the sidebar for the user to upload files
 uploaded_files = st.sidebar.file_uploader("",accept_multiple_files=True, type=['pdf'])
 
-# Initialize the number of uploaded files in session state
-if 'num_uploaded_files' not in st.session_state:
-    st.session_state.num_uploaded_files = 0
+# # Initialize the number of uploaded files in session state
+# if 'num_uploaded_files' not in st.session_state:
+#     st.session_state.num_uploaded_files = 0
 
-# When a new PDF is uploaded:
-if len(uploaded_files) != st.session_state.num_uploaded_files:
-    st.session_state.new_pdf_uploaded = True
-    st.session_state.num_uploaded_files = len(uploaded_files)
-else:
-    st.session_state.new_pdf_uploaded = False
+# # When a new PDF is uploaded:
+# if len(uploaded_files) != st.session_state.num_uploaded_files:
+#     st.session_state.new_pdf_uploaded = True
+#     st.session_state.num_uploaded_files = len(uploaded_files)
+# else:
+#     st.session_state.new_pdf_uploaded = False
 
-if st.session_state.new_pdf_uploaded:    
+# if st.session_state.new_pdf_uploaded:    
     # Initialize an empty list to store the extracted text from the uploaded files
     data = []
     filenames = []
@@ -451,8 +451,8 @@ if st.session_state.new_pdf_uploaded:
     
 
 
-### RESET TO FALSE UNTIL NEW PDF UPLOADED
-st.session_state.new_pdf_uploaded = False
+# ### RESET TO FALSE UNTIL NEW PDF UPLOADED
+# st.session_state.new_pdf_uploaded = False
 
 
 

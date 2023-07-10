@@ -32,7 +32,7 @@ openai.api_key = st.secrets["openai_password"]
 ##### I THINK THIS IS THE CHAT BAR #¢##########
 # Initialize the session state for the OpenAI model if it doesn't exist, with a default value of "gpt-4"
 if "openai_model" not in st.session_state:
-    st.session_state["openai_model"] = #gpt-3.5-turbo-16k# #"gpt-4"
+    st.session_state["openai_model"] = "gpt-3.5-turbo-16k" #"gpt-4"
 
 # Initialize the session state for the messages if it doesn't exist, as an empty list
 if "messages" not in st.session_state:

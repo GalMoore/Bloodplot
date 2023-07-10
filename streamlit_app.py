@@ -12,7 +12,6 @@ import re
 
 # Set the title of the Streamlit application
 st.title(":hospital: LVD_ONES :hospital: ")
-# st.title(":: :hospital: :drop_of_blood:")
 # st.divider()
 
 st.markdown("**Welcome to Bloodplot**, The quickest and easiest tool to plot Blood Gas work values, over time, from your PDF documents. \
@@ -31,10 +30,9 @@ openai.api_key = st.secrets["openai_password"]
 
 ###############################################
 ##### I THINK THIS IS THE CHAT BAR #¢##########
-
 # Initialize the session state for the OpenAI model if it doesn't exist, with a default value of "gpt-4"
 if "openai_model" not in st.session_state:
-    st.session_state["openai_model"] = "gpt-4"
+    st.session_state["openai_model"] = #gpt-3.5-turbo-16k# #"gpt-4"
 
 # Initialize the session state for the messages if it doesn't exist, as an empty list
 if "messages" not in st.session_state:
@@ -83,7 +81,6 @@ if prompt := st.chat_input("What is up?"):
 # Add a file uploader to the sidebar for the user to upload files
 uploaded_files = st.sidebar.file_uploader("",accept_multiple_files=True, type=['pdf'])
 
-
 # Initialize the number of uploaded files in session state
 if 'num_uploaded_files' not in st.session_state:
     st.session_state.num_uploaded_files = 0
@@ -95,15 +92,7 @@ if len(uploaded_files) != st.session_state.num_uploaded_files:
 else:
     st.session_state.new_pdf_uploaded = False
 
-if st.session_state.new_pdf_uploaded:
-
-    
-# # When a PDF is uploaded:
-# if 'uploaded_pdf' in st.session_state:
-#     st.session_state.new_pdf_uploaded = True
-
-# if 'new_pdf_uploaded' in st.session_state and st.session_state.new_pdf_uploaded:
-    
+if st.session_state.new_pdf_uploaded:    
     # Initialize an empty list to store the extracted text from the uploaded files
     data = []
     filenames = []

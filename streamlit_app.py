@@ -74,57 +74,6 @@ if 'df' in locals() and not df.empty:
 # Set the OpenAI API key from Streamlit secrets
 openai.api_key = st.secrets["openai_password"]
 
-###############################################
-##### I THINK THIS IS THE CHAT BAR #¢##########
-# Initialize the session state for the OpenAI model if it doesn't exist, with a default value of "gpt-4"
-if "openai_model" not in st.session_state:
-    st.session_state["openai_model"] = "gpt-4"
-
-# Initialize the session state for the messages if it doesn't exist, as an empty list
-if "messages" not in st.session_state:
-    st.session_state.messages = []
-
-# Display all the existing messages in the chat, with the appropriate role (user or assistant)
-for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        st.markdown(message["content"])
-
-# Wait for the user to input a message
-if prompt := st.chat_input("What is up?"):
-    # If the user inputs a message, append it to the session's messages with the role "user"
-    st.session_state.messages.append({"role": "user", "content": prompt})
-    # Display the user's message
-    with st.chat_message("user"):
-        st.markdown(prompt)
-
-    # Prepare for the assistant's message
-    with st.chat_message("assistant"):
-        # Create a placeholder for the assistant's message
-        message_placeholder = st.empty()
-        # Initialize an empty string to build up the assistant's response
-        full_response = ""
-        # Generate the assistant's response using OpenAI's chat model, with the current session's messages as context
-        # The response is streamed, which means it arrives in parts that are appended to the full_response string
-        for response in openai.ChatCompletion.create(
-            model=st.session_state["openai_model"],
-            messages=[
-                {"role": m["role"], "content": m["content"]}
-                for m in st.session_state.messages
-            ],
-            stream=True,
-        ):
-            # Append the content of the new part of the response to the full_response string
-            full_response += response.choices[0].delta.get("content", "")
-            # Update the assistant's message placeholder with the current full_response string, appending a "▌" to indicate it's still typing
-            message_placeholder.markdown(full_response + "▌")
-        # Once the full response has been received, update the assistant's message placeholder without the "▌"
-        message_placeholder.markdown(full_response)
-    # Append the assistant's full response to the session's messages with the role "assistant"
-    st.session_state.messages.append({"role": "assistant", "content": full_response})
-####################################################
-####################################################
-
-
 ########### ANONIMIZE DATA (CHOP OFF IDENTIFYING TEXT ###########
 #################################################################
 def remove_lines(text):
@@ -454,6 +403,83 @@ if 'df_final' in locals() and not df_final.empty:
 else:
     # st.write("No PDF loaded. Please load a PDF file.")
     print("No PDF loaded. Please load a PDF file.")
+
+
+
+
+
+
+
+
+
+
+
+# ###############################################
+# ##### I THINK THIS IS THE CHAT BAR #¢##########
+# # Initialize the session state for the OpenAI model if it doesn't exist, with a default value of "gpt-4"
+# if "openai_model" not in st.session_state:
+#     st.session_state["openai_model"] = "gpt-4"
+
+# # Initialize the session state for the messages if it doesn't exist, as an empty list
+# if "messages" not in st.session_state:
+#     st.session_state.messages = []
+
+# # Display all the existing messages in the chat, with the appropriate role (user or assistant)
+# for message in st.session_state.messages:
+#     with st.chat_message(message["role"]):
+#         st.markdown(message["content"])
+
+# # Wait for the user to input a message
+# if prompt := st.chat_input("What is up?"):
+#     # If the user inputs a message, append it to the session's messages with the role "user"
+#     st.session_state.messages.append({"role": "user", "content": prompt})
+#     # Display the user's message
+#     with st.chat_message("user"):
+#         st.markdown(prompt)
+
+#     # Prepare for the assistant's message
+#     with st.chat_message("assistant"):
+#         # Create a placeholder for the assistant's message
+#         message_placeholder = st.empty()
+#         # Initialize an empty string to build up the assistant's response
+#         full_response = ""
+#         # Generate the assistant's response using OpenAI's chat model, with the current session's messages as context
+#         # The response is streamed, which means it arrives in parts that are appended to the full_response string
+#         for response in openai.ChatCompletion.create(
+#             model=st.session_state["openai_model"],
+#             messages=[
+#                 {"role": m["role"], "content": m["content"]}
+#                 for m in st.session_state.messages
+#             ],
+#             stream=True,
+#         ):
+#             # Append the content of the new part of the response to the full_response string
+#             full_response += response.choices[0].delta.get("content", "")
+#             # Update the assistant's message placeholder with the current full_response string, appending a "▌" to indicate it's still typing
+#             message_placeholder.markdown(full_response + "▌")
+#         # Once the full response has been received, update the assistant's message placeholder without the "▌"
+#         message_placeholder.markdown(full_response)
+#     # Append the assistant's full response to the session's messages with the role "assistant"
+#     st.session_state.messages.append({"role": "assistant", "content": full_response})
+# ####################################################
+# ####################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

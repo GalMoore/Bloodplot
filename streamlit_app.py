@@ -14,8 +14,8 @@ import re
 st.title(":sun_behind_cloud::microscope: CloudLab ") # : Your Health Vault 
 
 
-with open( "style.css" ) as css:
-    st.markdown( f'<style>{css.read()}</style>' , unsafe_allow_html= True)
+# with open( "style.css" ) as css:
+#     st.markdown( f'<style>{css.read()}</style>' , unsafe_allow_html= True)
     
 # Set the title of the Streamlit application
 # st.title(":sun_behind_cloud::microscope: CloudLab ") # : Your Health Vault 

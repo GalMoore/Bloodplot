@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 import re
 
 # Set the title of the Streamlit application
-st.title(":sun_behind_cloud::microscope: CloudLab: Your Health Vault  ")
+st.title(":sun_behind_cloud::microscope: CloudLab ") # : Your Health Vault 
 st.markdown("**:violet[Upload your PDF files on the left sidebar]** and watch the graphs populate below.")
 
 # Set the OpenAI API key from Streamlit secrets

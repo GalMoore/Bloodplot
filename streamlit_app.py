@@ -116,13 +116,13 @@ df['Text'] = df['Text'].str.lower()
 # st.write(df)  # This line will display the initial dataframe on the Streamlit UI. 
 # The dataframe contains the text extracted from uploaded PDF documents. 
 
-# check if 'df' exists and is not empty
-if 'df' in locals() and not df.empty:
-    # Check if 'Text' column exists in the DataFrame
-    if 'Text' in df.columns:
-        # st.success('Extracted text from pdfs of lab results', icon="✅")
-        st.markdown('<small><p style="color:green;">✅ Extracted text from pdfs of lab results</p></small>', unsafe_allow_html=True)
-        st.markdown('<small><p style="color:gray;">We are processing your data... Allow up to 10 seconds per page</p></small>', unsafe_allow_html=True)
+# # check if 'df' exists and is not empty
+# if 'df' in locals() and not df.empty:
+#     # Check if 'Text' column exists in the DataFrame
+#     if 'Text' in df.columns:
+#         # st.success('Extracted text from pdfs of lab results', icon="✅")
+#         st.markdown('<small><p style="color:green;">✅ Extracted text from pdfs of lab results</p></small>', unsafe_allow_html=True)
+#         st.markdown('<small><p style="color:gray;">We are processing your data... Allow up to 10 seconds per page</p></small>', unsafe_allow_html=True)
 
 
 ########### ANONIMIZE DATA (CHOP OFF IDENTIFYING TEXT ###########

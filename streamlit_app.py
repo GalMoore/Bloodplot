@@ -10,6 +10,9 @@ import plotly.express as px
 import matplotlib.pyplot as plt
 import re
 
+with open( "app\style.css" ) as css:
+    st.markdown( f'<style>{css.read()}</style>' , unsafe_allow_html= True)
+    
 # Set the title of the Streamlit application
 st.title(":sun_behind_cloud::microscope: CloudLab ") # : Your Health Vault 
 st.markdown("**:violet[Upload your PDF files on the left sidebar]** and watch the graphs populate below.")

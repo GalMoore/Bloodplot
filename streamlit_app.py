@@ -35,7 +35,7 @@ if "messages" not in st.session_state:
     st.session_state.messages = []
 
 # Wait for the user to input a message
-if prompt := st.chat_input("What is up?"):
+if prompt := st.chat_input("What would you like to know about these documents?"):
     # If the user inputs a message, clear previous messages and append the new one with the role "user"
     st.session_state.messages = [{"role": "user", "content": prompt}]
     # Display the user's message

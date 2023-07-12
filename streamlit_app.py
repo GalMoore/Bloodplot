@@ -10,12 +10,14 @@ import plotly.express as px
 import matplotlib.pyplot as plt
 import re
 
+st.markdown('<h1 style="font-size:40px;">:sun_behind_cloud::microscope: CloudLab</h1>', unsafe_allow_html=True)
+
+
 with open( "style.css" ) as css:
     st.markdown( f'<style>{css.read()}</style>' , unsafe_allow_html= True)
     
 # Set the title of the Streamlit application
 # st.title(":sun_behind_cloud::microscope: CloudLab ") # : Your Health Vault 
-st.markdown('<h1 style="font-size:40px;">:sun_behind_cloud::microscope: CloudLab</h1>', unsafe_allow_html=True)
 st.markdown("**:violet[Upload your PDF files on the left sidebar]** and watch the graphs populate below.")
 
 # Set the OpenAI API key from Streamlit secrets

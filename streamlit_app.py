@@ -10,7 +10,8 @@ import plotly.express as px
 import matplotlib.pyplot as plt
 import re
 
-st.markdown('<h1 style="font-size:40px;">:sun_behind_cloud::microscope: CloudLab</h1>', unsafe_allow_html=True)
+# st.markdown('<h1 style="font-size:40px;">:sun_behind_cloud::microscope: CloudLab</h1>', unsafe_allow_html=True)
+st.title(":sun_behind_cloud::microscope: CloudLab ") # : Your Health Vault 
 
 
 with open( "style.css" ) as css:

@@ -10,7 +10,7 @@ import plotly.express as px
 import matplotlib.pyplot as plt
 import re
 
-with open( "app\style.css" ) as css:
+with open( "style.css" ) as css:
     st.markdown( f'<style>{css.read()}</style>' , unsafe_allow_html= True)
     
 # Set the title of the Streamlit application
